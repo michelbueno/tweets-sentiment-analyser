@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     override func loadView() {
         self.view = HomeView()
         self.analyseButton.addTarget(self, action: #selector(analiseButtonPressed), for: .touchUpInside)
+        self.usernameTextField.delegate = self
     }
 
     override func viewDidLoad() {
@@ -28,5 +29,12 @@ class HomeViewController: UIViewController {
 
     @objc private func analiseButtonPressed() {
         presenter?.onAnaliseButtonPressed(username: usernameTextField.text!)
+    }
+}
+
+extension HomeViewController: UITextFieldDelegate {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
