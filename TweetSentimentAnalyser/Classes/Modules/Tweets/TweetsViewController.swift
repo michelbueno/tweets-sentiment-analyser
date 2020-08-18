@@ -27,10 +27,10 @@ class TweetsViewController: UIViewController, TweetsViewControllerType {
         super.didReceiveMemoryWarning()
     }
 
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        presenter?.loadTweetsFor(username!)
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.loadTweetsFor(username!)
+    }
 
     func showError() {
 

@@ -179,7 +179,6 @@
 			children = (
 				E9987D5F2B20C25C9D6F4777CB739944 /* Modules */,
 				58E020699D773707971648609C73FC84 /* Info.plist */,
-				BE2D2A1B62AE23B1DD5D6B76 /* Mocks */,
 			);
 			path = TweetSentimentAnalyserTests;
 			sourceTree = "<group>";
@@ -247,13 +246,6 @@
 				BE2D2B53B30F234EEAC1F44C /* TweetsView.swift */,
 			);
 			path = Tweets;
-			sourceTree = "<group>";
-		};
-		BE2D2A1B62AE23B1DD5D6B76 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mocks;
 			sourceTree = "<group>";
 		};
 		BEC641C801F634D6E9C49667333EC52E /* TweetSentimentAnalyser */ = {
