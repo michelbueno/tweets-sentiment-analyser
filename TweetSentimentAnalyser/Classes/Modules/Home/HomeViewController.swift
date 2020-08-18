@@ -9,6 +9,9 @@ import UIKit
 class HomeViewController: UIViewController {
     unowned var homeView: HomeView { return self.view as! HomeView }
     unowned var analyseButton: UIButton { return homeView.analyzeButton }
+    unowned var usernameTextField: UITextField { return homeView.usernameTextField }
+    
+    var presenter: HomePresenterType?
 
     override func loadView() {
         self.view = HomeView()
@@ -24,6 +27,6 @@ class HomeViewController: UIViewController {
     }
 
     @objc private func analiseButtonPressed() {
-        print("Analyse button pressed")
+        presenter?.onAnaliseButtonPressed(username: usernameTextField.text!)
     }
 }

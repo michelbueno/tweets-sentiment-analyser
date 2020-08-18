@@ -24,7 +24,7 @@ public final class HomeView: UIView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = .white
-        label.text = "Welcome to TweetSentimentAnalyser!\nType the username you ant to analyse"
+        label.text = "Welcome to TweetSentimentAnalyser!\nType the username you want to analyse"
         return label
     }()
 
