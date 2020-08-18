@@ -15,6 +15,8 @@
 		4A6B918A2BF46E306AAA01D605DE6A17 /* Pods_TweetSentimentAnalyser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA0A4574AC78BF90E35101596E1B7E8 /* Pods_TweetSentimentAnalyser.framework */; };
 		82F0AF7F8CBA460BA95464D9A9E5B5FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87A122C8F22FC3C2F7205A10D82501F9 /* Assets.xcassets */; };
 		97A3C88B7F73ACD53E9B3AEE5D4ED2F0 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92468D71C5C8D0501EC578DD60E358E0 /* HomeRouter.swift */; };
+		BE2D214D63A3A656F630ABD3 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2D20F48777507509A2FF29 /* UIView+Ext.swift */; };
+		BE2D26CCD7141382B2928C8C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2D25EB8B617696E4195821 /* HomeView.swift */; };
 		C5E1F1517B95BB7B09BE67E48688B803 /* TweetSentimentAnalyserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8220A778D7466D013993CE764A00BC4 /* TweetSentimentAnalyserUITests.swift */; };
 		CB7C61607C457E3159643306D497DFAF /* Pods_TweetSentimentAnalyser_TweetSentimentAnalyserTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4A42B77B6F64A95C218E522D21B2EA /* Pods_TweetSentimentAnalyser_TweetSentimentAnalyserTests.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +57,8 @@
 		B9FD3CBE501C121ECBCF298A7C9A910D /* Pods-TweetSentimentAnalyserTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TweetSentimentAnalyserTests.debug.xcconfig"; path = "Target Support Files/Pods-TweetSentimentAnalyserTests/Pods-TweetSentimentAnalyserTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA33A93A6DCAD9E5D6E243512BBB984A /* Pods-TweetSentimentAnalyser-TweetSentimentAnalyserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TweetSentimentAnalyser-TweetSentimentAnalyserTests.release.xcconfig"; path = "Target Support Files/Pods-TweetSentimentAnalyser-TweetSentimentAnalyserTests/Pods-TweetSentimentAnalyser-TweetSentimentAnalyserTests.release.xcconfig"; sourceTree = "<group>"; };
 		BAA0A4574AC78BF90E35101596E1B7E8 /* Pods_TweetSentimentAnalyser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TweetSentimentAnalyser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE2D20F48777507509A2FF29 /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		BE2D25EB8B617696E4195821 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BF67DF812335CA46FD098390A396195C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0B4210C06A4AFB1344657E4B339FB54 /* Pods_TweetSentimentAnalyser_TweetSentimentAnalyserUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TweetSentimentAnalyser_TweetSentimentAnalyserUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43B25A7586DB799CBF09821C172BBB1 /* Pods-TweetSentimentAnalyserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TweetSentimentAnalyserTests.release.xcconfig"; path = "Target Support Files/Pods-TweetSentimentAnalyserTests/Pods-TweetSentimentAnalyserTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				D877D38C66EC11970856B01FF2AB6A07 /* App */,
+				ADB4BED324EB66F200D98330 /* Extensions */,
 				EEC4502D92860A49EA9C4107CB7B53BA /* Modules */,
 			);
 			path = Classes;
@@ -152,6 +157,14 @@
 			path = TweetSentimentAnalyserTests;
 			sourceTree = "<group>";
 		};
+		ADB4BED324EB66F200D98330 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BE2D20F48777507509A2FF29 /* UIView+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		AF150830479916365B29966F657016E4 /* TweetSentimentAnalyserUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +198,7 @@
 			children = (
 				92468D71C5C8D0501EC578DD60E358E0 /* HomeRouter.swift */,
 				505B43FC7956FB851426D7E6D5ECA9C3 /* HomeViewController.swift */,
+				BE2D25EB8B617696E4195821 /* HomeView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -508,6 +522,8 @@
 				3C49BA14BC132566C619F9A191ACC4C7 /* AppDelegate.swift in Sources */,
 				97A3C88B7F73ACD53E9B3AEE5D4ED2F0 /* HomeRouter.swift in Sources */,
 				0B401043B897E6757F27DA3BB51E2E4E /* HomeViewController.swift in Sources */,
+				BE2D26CCD7141382B2928C8C /* HomeView.swift in Sources */,
+				BE2D214D63A3A656F630ABD3 /* UIView+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

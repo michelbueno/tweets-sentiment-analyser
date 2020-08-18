@@ -6,11 +6,14 @@
 import Foundation
 import UIKit
 
-protocol HomeViewControllerType {
+class HomeViewController: UIViewController {
+    unowned var homeView: HomeView { return self.view as! HomeView }
+    unowned var analyseButton: UIButton { return homeView.analyzeButton }
 
-}
-
-class HomeViewController: UIViewController, HomeViewControllerType {
+    override func loadView() {
+        self.view = HomeView()
+        self.analyseButton.addTarget(self, action: #selector(analiseButtonPressed), for: .touchUpInside)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,5 +21,9 @@ class HomeViewController: UIViewController, HomeViewControllerType {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    @objc private func analiseButtonPressed() {
+        print("Analyse button pressed")
     }
 }
