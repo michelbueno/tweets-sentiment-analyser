@@ -1,0 +1,9 @@
+build/
+*.pbxuser
+xcuserdata
+*.xccheckout
+*.xcuserstate
+
+Pods/
+
+.idea/
