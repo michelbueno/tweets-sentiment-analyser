@@ -7,5 +7,5 @@ import Foundation
 
 class Tweet {
     var text: String?
-    var score: Double?
+    var sentimentScore: Double?
 }

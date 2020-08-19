@@ -32,7 +32,7 @@ extension TweetsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "tweetCell")
         cell.textLabel?.text = tweets[indexPath.row].text
-        cell.detailTextLabel?.text = "\(tweets[indexPath.row].score)"
+        cell.detailTextLabel?.text = "\(tweets[indexPath.row].sentimentScore)"
         cell.backgroundColor = .darkGray
         cell.textLabel?.textColor = .white
         cell.detailTextLabel?.textColor = .white
