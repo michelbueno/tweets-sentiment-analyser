@@ -39,12 +39,13 @@ class HomeInteractor: HomeInteractorType {
     }
 
     private func parseTweetsData(data: Data?) -> [Tweet] {
-        let tweets: [Tweet] = []
+        var tweets: [Tweet] = []
         if let tweetsArrayObject = try! JSONSerialization.jsonObject(with: data!, options: []) as? [Dictionary<String,AnyObject>] {
             for tweetObject in tweetsArrayObject {
                 let tweet = Tweet()
                 tweet.text = tweetObject["text"] as? String
                 tweet.id = tweetObject["id_str"] as? String
+                tweets.append(tweet)
             }
         }
         return tweets
