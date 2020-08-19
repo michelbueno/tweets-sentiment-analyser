@@ -20,6 +20,7 @@
 		1DD237D15F4B0E91C7E6DC6542C7A06D /* HomeRouterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66193A2EA6BE1ACB5600EAB50841EE4F /* HomeRouterTest.swift */; };
 		76388DE9B4E972CA32C9FACC335F8025 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB157CE6CCAE781EE784A61977BB91B2 /* HomeView.swift */; };
 		0B401043B897E6757F27DA3BB51E2E4E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B43FC7956FB851426D7E6D5ECA9C3 /* HomeViewController.swift */; };
+		8D98A0B07EADFD957807CC410E58F29C /* HomeViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2710B1D2309C3C489C48888CD9087A /* HomeViewControllerMock.swift */; };
 		117D629F1AFDBB34D121198D7B49A940 /* HomeViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E6DA7856734C3C5773E24A5C86096 /* HomeViewControllerTest.swift */; };
 		1054A74EF6876C07CF8EB9710DC84698 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B59EEBF84FD881482CA105BEF8CA12 /* LaunchScreen.storyboard */; };
 		4A6B918A2BF46E306AAA01D605DE6A17 /* Pods_TweetSentimentAnalyser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA0A4574AC78BF90E35101596E1B7E8 /* Pods_TweetSentimentAnalyser.framework */; };
@@ -71,6 +72,7 @@
 		66193A2EA6BE1ACB5600EAB50841EE4F /* HomeRouterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRouterTest.swift; sourceTree = "<group>"; };
 		FB157CE6CCAE781EE784A61977BB91B2 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		505B43FC7956FB851426D7E6D5ECA9C3 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9F2710B1D2309C3C489C48888CD9087A /* HomeViewControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerMock.swift; sourceTree = "<group>"; };
 		153E6DA7856734C3C5773E24A5C86096 /* HomeViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTest.swift; sourceTree = "<group>"; };
 		58E020699D773707971648609C73FC84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		947693DD956DD66460ECD868A776FAAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				6F477768302BDC601599B8B6CC74B949 /* HomeInteractorMock.swift */,
 				C9BBF1C980212C040A97F4F31819C124 /* HomePresenterMock.swift */,
 				4B44CF9469F35868B1918222291D828C /* HomeRouterMock.swift */,
+				9F2710B1D2309C3C489C48888CD9087A /* HomeViewControllerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				CEF071D22D4901D2B21862CBE21454A7 /* HomePresenterTest.swift in Sources */,
 				439BDEE2B88CEEE34A4592353EA451D7 /* HomeRouterMock.swift in Sources */,
 				1DD237D15F4B0E91C7E6DC6542C7A06D /* HomeRouterTest.swift in Sources */,
+				8D98A0B07EADFD957807CC410E58F29C /* HomeViewControllerMock.swift in Sources */,
 				117D629F1AFDBB34D121198D7B49A940 /* HomeViewControllerTest.swift in Sources */,
 				11B9102F8F8CCD7BC239D473FF7707AA /* RemoteServiceMock.swift in Sources */,
 				A281286B12285F06A44B16C1CEE35749 /* RemoteServiceTest.swift in Sources */,

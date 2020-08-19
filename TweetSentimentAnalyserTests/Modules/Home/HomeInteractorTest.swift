@@ -41,6 +41,20 @@ class HomeInteractorTest: QuickSpec {
 
                 expect(presenterMock.didCallShowError).to(beTrue())
             }
+
+            it("uses presenter to load tweets list") {
+                sut.fetchTweetsFor(username: "someUsername")
+
+                expect(presenterMock.didCallLoadTweetsList).to(beTrue())
+            }
+
+            it("uses presenter to load tweets list witch tweetsList") {
+                sut.fetchTweetsFor(username: "someUsername")
+
+                expect(presenterMock.didCallLoadTweetsList).to(beTrue())
+                expect(presenterMock.lastListCalled).toNot(beNil())
+                expect(presenterMock.lastListCalled?.count).to(equal(2))
+            }
         }
 
     }
