@@ -7,6 +7,7 @@ import Foundation
 import UIKit
 
 protocol HomeViewControllerType {
+    var presenter: HomePresenterType? { get set }
     func showErrorMessage()
 }
 

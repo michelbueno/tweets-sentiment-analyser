@@ -16,7 +16,6 @@ public final class HomeView: UIView {
         textField.borderStyle = .roundedRect
         textField.keyboardType = .alphabet
         textField.returnKeyType = .done
-        textField.text = "oatila"
         return textField
     }()
 
