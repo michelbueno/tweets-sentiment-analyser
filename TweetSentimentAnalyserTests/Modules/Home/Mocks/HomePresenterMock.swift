@@ -9,12 +9,27 @@ import Foundation
 
 class HomePresenterMock: HomePresenterType {
     var router: HomeRouterType?
+    var interactor: HomeInteractorType?
+    var view: HomeViewControllerType?
 
     var didCallOnAnaliseButtonPressed = false
     var lastUsernameCalled: String?
+    var didCallShowError = false
+    var didCallLoadTweetsList = false
+    var lastListCalled: [Tweet]?
 
     func onAnaliseButtonPressed(username: String) {
         didCallOnAnaliseButtonPressed = true
         lastUsernameCalled = username
     }
+    
+    func showError() {
+        didCallShowError = true
+    }
+    
+    func loadTweetsList(with tweets: [Tweet]) {
+        didCallLoadTweetsList = true
+        lastListCalled = tweets
+    }
+    
 }

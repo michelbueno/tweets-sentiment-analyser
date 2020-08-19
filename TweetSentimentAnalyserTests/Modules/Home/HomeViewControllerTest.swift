@@ -12,8 +12,8 @@ import Nimble
 class HomeViewControllerTest: QuickSpec {
     override func spec() {
         describe("HomeViewController") {
-            var sut = HomeViewController()
-            var presenterMock = HomePresenterMock()
+            let sut = HomeViewController()
+            let presenterMock = HomePresenterMock()
             sut.presenter = presenterMock
 
             it("calls presenter on analyse button pressed with correct param") {

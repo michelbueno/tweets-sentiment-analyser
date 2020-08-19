@@ -7,15 +7,15 @@ import Foundation
 import UIKit
 
 protocol TweetsRouterType {
-    func createModule(with username:String) -> UIViewController
+    func createModule(with tweets: [Tweet]) -> UIViewController
 }
 
 class TweetsRouter: TweetsRouterType {
-    func createModule(with username: String) -> UIViewController {
+    func createModule(with tweets: [Tweet]) -> UIViewController {
         let viewController = TweetsViewController()
 
         let presenter = TweetsPresenter()
-        viewController.username = username
+        viewController.tweets = tweets
         viewController.presenter = presenter
         viewController.presenter?.router = self
         viewController.presenter?.view = viewController

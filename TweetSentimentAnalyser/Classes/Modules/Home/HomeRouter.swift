@@ -9,7 +9,7 @@ import UIKit
 protocol HomeRouterType {
     var tweetsRouter: TweetsRouterType? { get set }
     func createModule() -> UINavigationController
-    func pushToTweetsList(with username: String)
+    func showTweetList(with tweets: [Tweet])
 }
 
 class HomeRouter: HomeRouterType {
@@ -17,17 +17,25 @@ class HomeRouter: HomeRouterType {
     var navigationController: UINavigationController?
 
     func createModule() -> UINavigationController {
+        let homeRouter = self
+        let tweetsRouter = TweetsRouter()
+        let remoteService = RemoteService()
+        homeRouter.tweetsRouter = tweetsRouter
+        let presenter = HomePresenter()
+        let interactor = HomeInteractor()
+        interactor.remoteService = remoteService
+        presenter.interactor = interactor
+        interactor.presenter = presenter
+
         let viewController = HomeViewController()
-        viewController.presenter = HomePresenter()
-        viewController.presenter?.router = self
-        viewController.presenter?.router?.tweetsRouter = TweetsRouter()
+        viewController.presenter = presenter
         navigationController = UINavigationController(rootViewController: viewController)
 
         return navigationController!
     }
 
-    func pushToTweetsList(with username: String) {
-        guard let tweetsListViewController = tweetsRouter?.createModule(with: username) else {
+    func showTweetList(with tweets: [Tweet]) {
+        guard let tweetsListViewController = tweetsRouter?.createModule(with: tweets) else {
             fatalError("Failed to create Tweets module")
         }
 

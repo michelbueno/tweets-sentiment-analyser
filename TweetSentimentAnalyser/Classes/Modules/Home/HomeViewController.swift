@@ -6,6 +6,10 @@
 import Foundation
 import UIKit
 
+protocol HomeViewControllerType {
+    func showErrorMessage()
+}
+
 class HomeViewController: UIViewController {
     unowned var homeView: HomeView { return self.view as! HomeView }
     unowned var analyseButton: UIButton { return homeView.analyzeButton }
@@ -36,5 +40,11 @@ extension HomeViewController: UITextFieldDelegate {
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension HomeViewController: HomeViewControllerType {
+    func showErrorMessage() {
+
     }
 }

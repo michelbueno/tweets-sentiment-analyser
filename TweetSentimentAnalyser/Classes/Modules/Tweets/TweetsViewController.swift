@@ -14,6 +14,7 @@ protocol TweetsViewControllerType: class {
 class TweetsViewController: UIViewController, TweetsViewControllerType {
     var presenter: TweetsPresenterType?
     var username: String?
+    var tweets: [Tweet] = []
 
     override func loadView() {
         self.view = TweetsView()

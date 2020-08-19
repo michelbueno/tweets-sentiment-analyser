@@ -13,19 +13,22 @@ class HomePresenterTest: QuickSpec {
     override func spec() {
         describe("HomePresenter") {
             var homeRouterMock: HomeRouterMock!
+            var homeInteractorMock: HomeInteractorMock!
             var sut: HomePresenter!
 
             beforeEach {
                 homeRouterMock = HomeRouterMock()
+                homeInteractorMock = HomeInteractorMock()
                 sut = HomePresenter()
                 sut.router = homeRouterMock
+                sut.interactor = homeInteractorMock
             }
 
-            it("calls router to push to Tweets list view controller when button analyse is pressed") {
+            it("calls interactor to search for given username") {
                 sut.onAnaliseButtonPressed(username: "someUsername")
 
-                expect(homeRouterMock.didCallPushToTweetsList).to(beTrue())
-                expect(homeRouterMock.lastUsernameCalled).to(equal("someUsername"))
+                expect(homeInteractorMock.didCallFetchInfo).to(beTrue())
+                expect(homeInteractorMock.lastUsernameCalled).to(equal("someUsername"))
             }
         }
     }
