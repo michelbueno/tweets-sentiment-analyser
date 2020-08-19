@@ -9,7 +9,7 @@ import UIKit
 class TweetsViewController: UIViewController {
     unowned var tweetsView: TweetsView { return self.view as! TweetsView }
     unowned var tableView: UITableView { return tweetsView.tweetsTableView }
-    var tweets: [Tweet] = []
+    var tweets: [String] = []
 
     override func loadView() {
         self.view = TweetsView()
@@ -31,8 +31,7 @@ extension TweetsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "tweetCell")
-        cell.textLabel?.text = tweets[indexPath.row].text
-        cell.detailTextLabel?.text = "\(tweets[indexPath.row].sentimentScore)"
+        cell.textLabel?.text = tweets[indexPath.row]
         cell.backgroundColor = .darkGray
         cell.textLabel?.textColor = .white
         cell.detailTextLabel?.textColor = .white

@@ -8,11 +8,22 @@ import Alamofire
 
 protocol RemoteServiceType {
     func get(url: URL, headers: HTTPHeaders, onSuccess: @escaping (Data?) -> Void, onFailure: @escaping () -> Void)
+    func post(url: URL, parameters: [String: Any], onSuccess: @escaping (Data?) -> Void, onFailure: @escaping () -> Void)
 }
 
 class RemoteService: RemoteServiceType {
     func get(url: URL, headers: HTTPHeaders, onSuccess: @escaping (Data?) -> Void, onFailure: @escaping () -> Void) {
         AF.request(url, headers: headers).responseJSON { response in
+            if response.error == nil {
+                onSuccess(response.data)
+            } else {
+                onFailure()
+            }
+        }
+    }
+
+    func post(url: URL, parameters: [String: Any], onSuccess: @escaping (Data?) -> Void, onFailure: @escaping () -> Void) {
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
             if response.error == nil {
                 onSuccess(response.data)
             } else {

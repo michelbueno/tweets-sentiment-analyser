@@ -8,6 +8,7 @@ import Foundation
 @testable import TweetSentimentAnalyser
 
 class HomeViewControllerMock: HomeViewControllerType {
+    var presenter: HomePresenterType?
     var didCallShowErrorMessage = false
 
     func showErrorMessage() {

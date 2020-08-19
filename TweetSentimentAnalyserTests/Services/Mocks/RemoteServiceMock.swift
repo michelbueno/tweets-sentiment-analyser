@@ -10,7 +10,9 @@ import Alamofire
 
 class RemoteServiceMock: RemoteServiceType {
     var didCallGet = false
+    var didCallPost = false
     var lastUrlCalled: URL?
+    var lastParametersCalled: [String: Any]?
     var lastHeadersCalled: HTTPHeaders?
     var returnError = false
     var dataToReturn: Data?
@@ -27,5 +29,15 @@ class RemoteServiceMock: RemoteServiceType {
         }
     }
 
+    func post(url: URL, parameters: [String: Any], onSuccess: @escaping (Data?) -> (), onFailure: @escaping () -> ()) {
+        didCallPost = true
+        lastUrlCalled = url
+        lastParametersCalled = parameters
 
+        if returnError {
+            onFailure()
+        } else {
+            onSuccess(dataToReturn)
+        }
+    }
 }

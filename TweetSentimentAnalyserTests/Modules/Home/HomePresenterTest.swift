@@ -41,15 +41,12 @@ class HomePresenterTest: QuickSpec {
             }
 
             it("uses router to navigate to tweets list") {
-                let tweet = Tweet()
-                tweet.text = "dummy text"
-                tweet.sentimentScore = 0.3
-                sut.loadTweetsList(with: [tweet])
+                sut.loadTweetsList(with: ["dummy text"])
 
                 expect(homeRouterMock.didCallPushToTweetsList).to(beTrue())
                 expect(homeRouterMock.lastListCalled).toNot(beNil())
-                expect(homeRouterMock.lastListCalled?.first?.text).to(equal("dummy text"))
-                expect(homeRouterMock.lastListCalled?.first?.sentimentScore).to(equal(0.3))
+                expect(homeRouterMock.lastListCalled?.count).to(equal(1))
+                expect(homeRouterMock.lastListCalled?.first).to(equal("dummy text"))
             }
         }
     }

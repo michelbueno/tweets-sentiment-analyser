@@ -16,7 +16,7 @@ class HomePresenterMock: HomePresenterType {
     var lastUsernameCalled: String?
     var didCallShowError = false
     var didCallLoadTweetsList = false
-    var lastListCalled: [Tweet]?
+    var lastListCalled: [String]?
 
     func onAnaliseButtonPressed(username: String) {
         didCallOnAnaliseButtonPressed = true
@@ -27,7 +27,7 @@ class HomePresenterMock: HomePresenterType {
         didCallShowError = true
     }
     
-    func loadTweetsList(with tweets: [Tweet]) {
+    func loadTweetsList(with tweets: [String]) {
         didCallLoadTweetsList = true
         lastListCalled = tweets
     }

@@ -12,14 +12,14 @@ class HomeRouterMock: HomeRouterType {
     var tweetsRouter: TweetsRouterType?
     var didCallCreateModule = false
     var didCallPushToTweetsList = false
-    var lastListCalled: [Tweet]?
+    var lastListCalled: [String]?
 
     func createModule() -> UINavigationController {
         didCallCreateModule = true
         return UINavigationController()
     }
 
-    func showTweetList(with tweets: [Tweet]) {
+    func showTweetList(with tweets: [String]) {
         didCallPushToTweetsList = true
         lastListCalled = tweets
     }

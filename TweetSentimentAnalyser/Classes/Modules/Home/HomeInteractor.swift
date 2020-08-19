@@ -14,25 +14,13 @@ protocol HomeInteractorType {
 class HomeInteractor: HomeInteractorType {
     var presenter: HomePresenterType?
     var tweetService: TweetServiceType?
+    var sentimentService: SentimentScoreServiceType?
 
     func fetchTweetsFor(username: String) {
         tweetService?.fetchTweetsTextFor(username: username, onSuccess: { tweetsTextList in
-            let tweets = self.parseTweetsList(tweetsTextList)
-            self.presenter?.loadTweetsList(with: tweets)
+            self.presenter?.loadTweetsList(with: tweetsTextList)
         }, onFailure: {
             self.presenter?.showError()
         })
     }
-
-    private func parseTweetsList(_ list: [String]) -> [Tweet]{
-        var tweets: [Tweet] = []
-        for text in list {
-            let tweet = Tweet()
-            tweet.text = text
-            tweets.append(tweet)
-        }
-        return tweets
-    }
-
-
 }

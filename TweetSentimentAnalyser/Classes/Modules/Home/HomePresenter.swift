@@ -12,7 +12,7 @@ protocol HomePresenterType {
 
     func onAnaliseButtonPressed(username: String)
     func showError()
-    func loadTweetsList(with tweets: [Tweet])
+    func loadTweetsList(with tweets: [String])
 }
 
 class HomePresenter: HomePresenterType {
@@ -28,7 +28,7 @@ class HomePresenter: HomePresenterType {
         view?.showErrorMessage()
     }
 
-    func loadTweetsList(with tweets: [Tweet]) {
+    func loadTweetsList(with tweets: [String]) {
         router?.showTweetList(with: tweets)
     }
 }
