@@ -13,52 +13,35 @@ import Alamofire
 class HomeInteractorTest: QuickSpec {
     override func spec() {
         var sut: HomeInteractor!
-        var remoteServiceMock: RemoteServiceMock!
+        var tweetServiceMock: TweetServiceMock!
         var presenterMock: HomePresenterMock!
 
-        beforeEach {
-            remoteServiceMock = RemoteServiceMock()
-            presenterMock = HomePresenterMock()
+        describe("HomeInteractor") {
+            beforeEach {
+                tweetServiceMock = TweetServiceMock()
+                tweetServiceMock.listToReturn = ["a tweet", "another tweet"]
+                presenterMock = HomePresenterMock()
 
-            sut = HomeInteractor()
-            sut.remoteService = remoteServiceMock
-            sut.presenter = presenterMock
-        }
+                sut = HomeInteractor()
+                sut.tweetService = tweetServiceMock
+                sut.presenter = presenterMock
+            }
 
-        describe("RemoteService") {
-            context("fetchTweetsForUsername") {
-                beforeEach {
-                    remoteServiceMock.dataToReturn = "[{\"id_str\": \"1234567890\",\"text\": \"dummy text\"}]".data(using: .utf8)
-                }
+            it("uses TweetService to fetch tweets text list with correct params") {
+                sut.fetchTweetsFor(username: "someUsername")
 
-                it("calls RemoteService with correct params") {
-                    sut.fetchTweetsFor(username: "someUserName")
+                expect(tweetServiceMock.didCallFetchTweetsText).to(beTrue())
+                expect(tweetServiceMock.lastUsernameCalled).to(equal("someUsername"))
+            }
 
-                    let expectedURL = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=someUserName"
-                    let expectedAuthHeader = HTTPHeader(name: "Authorization", value: "Bearer AAAAAAAAAAAAAAAAAAAAACePGwEAAAAAKz0vO7llEv6OT2m6HHujVXuJQPc%3DP7KXorCKshg4c8GeYEd47ywLzilKDxiKMg9ZiT3PcrgMptK6ai")
+            it("uses presenter to show error when tweet service fails") {
+                tweetServiceMock.returnError = true
 
-                    expect(remoteServiceMock.didCallGet).to(beTrue())
-                    expect(remoteServiceMock.lastUrlCalled?.absoluteString).to(equal(expectedURL))
-                    expect(remoteServiceMock.lastHeadersCalled).to(contain(expectedAuthHeader))
-                }
+                sut.fetchTweetsFor(username: "someUsername")
 
-                it("calls presenter to show tweets list with parsed tweets when request succeeds") {
-                    sut.fetchTweetsFor(username: "someUserName")
-
-                    expect(presenterMock.didCallLoadTweetsList).to(beTrue())
-                    expect(presenterMock.lastListCalled).toNot(beNil())
-                    expect(presenterMock.lastListCalled?.count).to(equal(1))
-                    expect(presenterMock.lastListCalled?.first?.text).to(equal("dummy text"))
-                    expect(presenterMock.lastListCalled?.first?.id).to(equal("1234567890"))
-                }
-
-                it("calls presenter to show error message when request fails") {
-                    remoteServiceMock.returnError = true
-                    sut.fetchTweetsFor(username: "someUserName")
-
-                    expect(presenterMock.didCallShowError).to(beTrue())
-                }
+                expect(presenterMock.didCallShowError).to(beTrue())
             }
         }
+
     }
 }

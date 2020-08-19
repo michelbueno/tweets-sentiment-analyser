@@ -8,8 +8,9 @@ import Foundation
 @testable import TweetSentimentAnalyser
 
 class HomeInteractorMock: HomeInteractorType {
+    var tweetService: TweetServiceType?
     var presenter: HomePresenterType?
-    var remoteService: RemoteServiceType?
+
     var didCallFetchInfo = false
     var lastUsernameCalled: String?
 

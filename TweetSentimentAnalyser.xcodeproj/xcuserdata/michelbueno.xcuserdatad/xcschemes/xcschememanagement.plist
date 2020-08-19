@@ -16,28 +16,28 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>All in HomeRouterTest.swift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false />
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
 		<key>All in HomePresenterTest.swift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>9</integer>
 		</dict>
 		<key>HomeViewControllerTest.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />
 			<key>orderHint</key>
-			<integer>11</integer>
+			<integer>10</integer>
 		</dict>
 		<key>HomeInteractorTest.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
+		<key>TweeServiceTest.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false />

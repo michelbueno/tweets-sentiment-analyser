@@ -23,7 +23,9 @@ class HomeRouter: HomeRouterType {
         homeRouter.tweetsRouter = tweetsRouter
         let presenter = HomePresenter()
         let interactor = HomeInteractor()
-        interactor.remoteService = remoteService
+        let tweetService = TweetService()
+        tweetService.remoteService = remoteService
+        interactor.tweetService = tweetService
         presenter.interactor = interactor
         interactor.presenter = presenter
 
