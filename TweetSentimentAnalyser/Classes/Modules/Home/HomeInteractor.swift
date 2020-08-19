@@ -27,9 +27,9 @@ class HomeInteractor: HomeInteractorType {
     private func parseTweetsList(_ list: [String]) -> [Tweet]{
         var tweets: [Tweet] = []
         for text in list {
-            debugPrint(text)
             let tweet = Tweet()
             tweet.text = text
+            tweets.append(tweet)
         }
         return tweets
     }

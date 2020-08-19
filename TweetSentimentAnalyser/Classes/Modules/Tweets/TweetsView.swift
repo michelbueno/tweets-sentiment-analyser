@@ -8,23 +8,23 @@ import UIKit
 import SnapKit
 
 public final class TweetsView: UIView {
-    public let dummyLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.textColor = .white
-        label.text = "This is the Tweets View"
-        return label
+
+    let tweetsTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .darkGray
+        return tableView
     }()
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setSubviewForAutoLayout(self.dummyLabel)
-        self.backgroundColor = UIColor.darkGray
-        self.dummyLabel.snp.makeConstraints { (make: ConstraintMaker) -> Void in
+        self.setSubviewForAutoLayout(self.tweetsTableView)
+        self.backgroundColor = .darkGray
+        self.tweetsTableView.snp.makeConstraints { (make: ConstraintMaker) -> Void in
             make.center.equalToSuperview()
-            make.leading.equalToSuperview().offset(40.0)
-            make.trailing.equalToSuperview().inset(40.0)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.height.equalToSuperview()
+            make.width.equalToSuperview()
         }
     }
 

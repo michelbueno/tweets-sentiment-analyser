@@ -45,6 +45,6 @@ extension HomeViewController: UITextFieldDelegate {
 
 extension HomeViewController: HomeViewControllerType {
     func showErrorMessage() {
-
+        debugPrint("showErrorMessage called")
     }
 }

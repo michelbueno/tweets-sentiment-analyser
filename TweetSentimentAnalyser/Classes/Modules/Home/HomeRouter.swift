@@ -22,6 +22,7 @@ class HomeRouter: HomeRouterType {
         let remoteService = RemoteService()
         homeRouter.tweetsRouter = tweetsRouter
         let presenter = HomePresenter()
+        presenter.router = homeRouter
         let interactor = HomeInteractor()
         let tweetService = TweetService()
         tweetService.remoteService = remoteService
@@ -31,6 +32,7 @@ class HomeRouter: HomeRouterType {
 
         let viewController = HomeViewController()
         viewController.presenter = presenter
+        presenter.view = viewController
         navigationController = UINavigationController(rootViewController: viewController)
 
         return navigationController!
