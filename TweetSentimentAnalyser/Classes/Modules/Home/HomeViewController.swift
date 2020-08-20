@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        super.navigationItem.title = "Tweet Sentiment Analyser"
     }
 
     @objc private func analiseButtonPressed() {

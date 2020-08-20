@@ -12,6 +12,7 @@ public final class TweetsView: UIView {
     let tweetsTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .darkGray
+        tableView.allowsSelection = false
         return tableView
     }()
 
