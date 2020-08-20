@@ -6,20 +6,37 @@
 import Foundation
 import UIKit
 
-class TweetsViewController: UIViewController {
+protocol TweetsViewControllerType {
+    var presenter: TweetsPresenterType? { get set }
+    func loadTweets(_ tweetsList: [String])
+    func showError()
+}
+
+class TweetsViewController: UIViewController, TweetsViewControllerType {
+    var presenter: TweetsPresenterType?
+
     unowned var tweetsView: TweetsView { return self.view as! TweetsView }
     unowned var tableView: UITableView { return tweetsView.tweetsTableView }
+
+    var username: String?
     var tweets: [String] = []
 
     override func loadView() {
         self.view = TweetsView()
         self.tableView.dataSource = self
+        presenter?.loadView(with: username!)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    func loadTweets(_ tweetsList: [String]) {
+        tweets.append(contentsOf: tweetsList)
+        self.tableView.reloadData()
+    }
+
+    func showError() {
+
     }
 }
+
 extension TweetsViewController: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
         1
@@ -35,8 +52,8 @@ extension TweetsViewController: UITableViewDataSource {
         cell.backgroundColor = .darkGray
         cell.textLabel?.textColor = .white
         cell.detailTextLabel?.textColor = .white
+        cell.textLabel?.numberOfLines = 0
 
         return cell
-
     }
 }

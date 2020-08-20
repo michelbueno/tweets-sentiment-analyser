@@ -10,25 +10,25 @@ import Alamofire
 
 @testable import TweetSentimentAnalyser
 
-class HomeInteractorTest: QuickSpec {
+class TweetsInteractorTest: QuickSpec {
     override func spec() {
-        var sut: HomeInteractor!
+        var sut: TweetsInteractor!
         var tweetServiceMock: TweetServiceMock!
-        var presenterMock: HomePresenterMock!
+        var presenterMock: TweetsPresenterMock!
 
-        describe("HomeInteractor") {
+        describe("TweetInteractorTest") {
             beforeEach {
                 tweetServiceMock = TweetServiceMock()
                 tweetServiceMock.listToReturn = ["a tweet", "another tweet"]
-                presenterMock = HomePresenterMock()
+                presenterMock = TweetsPresenterMock()
 
-                sut = HomeInteractor()
+                sut = TweetsInteractor()
                 sut.tweetService = tweetServiceMock
                 sut.presenter = presenterMock
             }
 
             it("uses TweetService to fetch tweets text list with correct params") {
-                sut.fetchTweetsFor(username: "someUsername")
+                sut.fetchTweetsFor("someUsername")
 
                 expect(tweetServiceMock.didCallFetchTweetsText).to(beTrue())
                 expect(tweetServiceMock.lastUsernameCalled).to(equal("someUsername"))
@@ -37,24 +37,20 @@ class HomeInteractorTest: QuickSpec {
             it("uses presenter to show error when tweet service fails") {
                 tweetServiceMock.returnError = true
 
-                sut.fetchTweetsFor(username: "someUsername")
+                sut.fetchTweetsFor("someUsername")
 
-                expect(presenterMock.didCallShowError).to(beTrue())
+                expect(presenterMock.didCallFailedToFetchTweets).to(beTrue())
             }
 
-            it("uses presenter to load tweets list") {
-                sut.fetchTweetsFor(username: "someUsername")
+            it("calls presenter with a list of tweets when request succeeds") {
+                tweetServiceMock.listToReturn = ["a tweet"]
 
-                expect(presenterMock.didCallLoadTweetsList).to(beTrue())
+                sut.fetchTweetsFor("someUsername")
+
+                expect(presenterMock.didCallShowTweets).to(beTrue())
             }
 
-            it("uses presenter to load tweets list witch tweetsList") {
-                sut.fetchTweetsFor(username: "someUsername")
 
-                expect(presenterMock.didCallLoadTweetsList).to(beTrue())
-                expect(presenterMock.lastListCalled).toNot(beNil())
-                expect(presenterMock.lastListCalled?.count).to(equal(2))
-            }
         }
 
     }

@@ -7,28 +7,16 @@ import Foundation
 
 protocol HomePresenterType {
     var router: HomeRouterType? { get set }
-    var interactor: HomeInteractorType? { get set }
     var view: HomeViewControllerType? { get set }
 
     func onAnaliseButtonPressed(username: String)
-    func showError()
-    func loadTweetsList(with tweets: [String])
 }
 
 class HomePresenter: HomePresenterType {
     var router: HomeRouterType?
-    var interactor: HomeInteractorType?
     var view: HomeViewControllerType?
 
     func onAnaliseButtonPressed(username: String) {
-        interactor?.fetchTweetsFor(username: username)
-    }
-
-    func showError() {
-        view?.showErrorMessage()
-    }
-
-    func loadTweetsList(with tweets: [String]) {
-        router?.showTweetList(with: tweets)
+        router?.navigateToTweetsList(with: username)
     }
 }

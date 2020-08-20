@@ -21,7 +21,7 @@ class HomeViewControllerTest: QuickSpec {
                 sut.analyseButton.sendActions(for: .touchUpInside)
 
                 expect(presenterMock.didCallOnAnaliseButtonPressed).to(beTrue())
-                expect(presenterMock.lastUsernameCalled).to(equal("someUsername"))
+                expect(presenterMock.lasUsernameCalled).to(equal("someUsername"))
             }
         }
     }
