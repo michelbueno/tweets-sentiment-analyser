@@ -28,10 +28,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     @objc private func analiseButtonPressed() {
         presenter?.onAnaliseButtonPressed(username: usernameTextField.text!)
     }

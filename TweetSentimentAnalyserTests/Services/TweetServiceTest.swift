@@ -36,6 +36,29 @@ class TweeServiceTest: QuickSpec {
                 expect(remoteServiceMock.lastHeadersCalled).toNot(beNil())
                 expect(remoteServiceMock.lastHeadersCalled?.value(for: "Authorization")).to(equal(expectedTokenValue))
             }
+
+            it("calls onFailure when remote service fails") {
+                remoteServiceMock.returnError = true
+                var didCallOnFailure = false
+
+                sut.fetchTweetsTextFor(username: "someUsername", onSuccess: { _ in }, onFailure: {
+                    didCallOnFailure = true
+                })
+
+                expect(didCallOnFailure).to(beTrue())
+            }
+
+            it("call onSuccess with a valid text array when request succeeds") {
+                var returnedTextList: [String]?
+                sut.fetchTweetsTextFor(username: "someUsername", onSuccess: { textList in
+                    returnedTextList = textList
+                }, onFailure: {})
+
+                expect(returnedTextList).toNot(beNil())
+                expect(returnedTextList?.count).to(equal(1))
+                expect(returnedTextList?.first).to(equal("dummy text"))
+
+            }
         }
     }
 }
