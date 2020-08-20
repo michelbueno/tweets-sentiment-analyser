@@ -15,12 +15,12 @@ protocol TweetsViewControllerType {
 class TweetsViewController: UIViewController, TweetsViewControllerType {
     var presenter: TweetsPresenterType?
 
-    unowned var tweetsView: TweetsView { return self.view as! TweetsView }
-    unowned var tableView: UITableView { return tweetsView.tweetsTableView }
+    unowned var tweetsView: TweetsView { self.view as! TweetsView }
+    unowned var tableView: UITableView { tweetsView.tweetsTableView }
 
     var username: String?
     var tweets: [String] = []
-    var cachedScore: [String: Double] = [:]
+    var cachedScore: [String: SentimentScore] = [:]
 
     override func loadView() {
         self.view = TweetsView()
@@ -52,13 +52,8 @@ extension TweetsViewController: UITableViewDataSource {
         let text = tweets[indexPath.row]
         let score = cachedScore[text]
 
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "tweetCell")
-        cell.textLabel?.text = text
-        cell.backgroundColor = .darkGray
-        cell.textLabel?.textColor = .white
-        cell.detailTextLabel?.textColor = .white
-        cell.textLabel?.numberOfLines = 0
-
+        let cell = TweetTableViewCell(style: .subtitle, reuseIdentifier: "tweetCell")
+        cell.label.text = text
         if score == nil {
             DispatchQueue.main.async {
                 let sentimentService = SentimentScoreService()
@@ -71,19 +66,17 @@ extension TweetsViewController: UITableViewDataSource {
                 })
             }
         } else {
-            switch score! {
-            case -1.0 ... -0.25:
+            switch score {
+            case .sad:
                 cell.imageView?.image = UIImage(named: "sad")
-            case -0.25 ... 0.25:
+            case .neutral:
                 cell.imageView?.image = UIImage(named: "neutral")
-            case 0.25 ... 1.0:
+            case .happy:
                 cell.imageView?.image = UIImage(named: "happy")
-            default:
+            case .none:
                 cell.imageView?.image = UIImage(named: "neutral")
             }
         }
-
-
 
         return cell
     }

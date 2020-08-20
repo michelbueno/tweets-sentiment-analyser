@@ -12,9 +12,9 @@ protocol HomeViewControllerType {
 }
 
 class HomeViewController: UIViewController {
-    unowned var homeView: HomeView { return self.view as! HomeView }
-    unowned var analyseButton: UIButton { return homeView.analyzeButton }
-    unowned var usernameTextField: UITextField { return homeView.usernameTextField }
+    unowned var homeView: HomeView { self.view as! HomeView }
+    unowned var analyseButton: UIButton { homeView.analyzeButton }
+    unowned var usernameTextField: UITextField { homeView.usernameTextField }
     
     var presenter: HomePresenterType?
 

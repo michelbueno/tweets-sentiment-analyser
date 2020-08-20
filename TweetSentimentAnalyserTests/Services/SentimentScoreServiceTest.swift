@@ -51,7 +51,7 @@ class SentimentScoreServiceTest: QuickSpec {
 
             it("calls onSuccess with a valid score when request succeeds") {
                 var didCallOnSuccess = false
-                var parsedScore: Double?
+                var parsedScore: SentimentScore?
                 sut.fetchSentimentScore(for: "dummy text",
                         onSuccess: { score in
                             didCallOnSuccess = true
@@ -60,7 +60,7 @@ class SentimentScoreServiceTest: QuickSpec {
                 )
 
                 expect(didCallOnSuccess).to(beTrue())
-                expect(parsedScore).to(equal(-0.2))
+                expect(parsedScore).to(equal(SentimentScore.neutral))
             }
 
             it("calls onFailure when remote service fails") {
@@ -74,17 +74,42 @@ class SentimentScoreServiceTest: QuickSpec {
                 expect(didCallOnFailure).to(beTrue())
             }
 
-            it("calls onFailure when it cannot parse sentiment score") {
-                remoteServiceMock.returnError = false
-                remoteServiceMock.dataToReturn = "{\"invalidObject\": {\"invalidField\": \"invalidValue\"}}".data(using: .utf8)
+            context("when parsing sentiment score value") {
+                it("returns 'sad' if score value is between -1.0 and -0.25") {
+                    remoteServiceMock.dataToReturn = "{\"documentSentiment\": {\"score\": -0.5}}".data(using: .utf8)
+                    var parsedScore: SentimentScore?
+                    sut.fetchSentimentScore(for: "dummy text",
+                            onSuccess: { score in
+                                parsedScore = score
+                            }, onFailure: {}
+                    )
 
-                var didCallOnFailure = false
+                    expect(parsedScore).to(equal(SentimentScore.sad))
+                }
 
-                sut.fetchSentimentScore(for: "dummy text", onSuccess: { _ in }, onFailure:{
-                    didCallOnFailure = true
-                })
+                it("returns '.neutral' if score value is between -0.25 and 0.25") {
+                    remoteServiceMock.dataToReturn = "{\"documentSentiment\": {\"score\": -0.1}}".data(using: .utf8)
+                    var parsedScore: SentimentScore?
+                    sut.fetchSentimentScore(for: "dummy text",
+                            onSuccess: { score in
+                                parsedScore = score
+                            }, onFailure: {}
+                    )
 
-                expect(didCallOnFailure).to(beTrue())
+                    expect(parsedScore).to(equal(SentimentScore.neutral))
+                }
+
+                it("returns '.happy' if score value is between 0.25 ... 1.0") {
+                    remoteServiceMock.dataToReturn = "{\"documentSentiment\": {\"score\": 0.7}}".data(using: .utf8)
+                    var parsedScore: SentimentScore?
+                    sut.fetchSentimentScore(for: "dummy text",
+                            onSuccess: { score in
+                                parsedScore = score
+                            }, onFailure: {}
+                    )
+
+                    expect(parsedScore).to(equal(SentimentScore.happy))
+                }
             }
         }
     }
