@@ -9,7 +9,7 @@ import Nimble
 
 @testable import TweetSentimentAnalyser
 
-class TweeServiceTest: QuickSpec {
+class TweetServiceTest: QuickSpec {
     override func spec() {
         describe("TweetService") {
             var sut: TweetService!

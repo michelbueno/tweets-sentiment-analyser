@@ -100,7 +100,7 @@ class SentimentScoreServiceTest: QuickSpec {
                     expect(parsedScore).to(equal(SentimentScore.neutral))
                 }
 
-                it("returns '.happy' if score value is between 0.25 ... 1.0") {
+                it("returns '.happy' if score value is between 0.25 and 1.0") {
                     remoteServiceMock.dataToReturn = "{\"documentSentiment\": {\"score\": 0.7}}".data(using: .utf8)
                     var parsedScore: SentimentScore?
                     sut.fetchSentimentScore(for: "dummy text",

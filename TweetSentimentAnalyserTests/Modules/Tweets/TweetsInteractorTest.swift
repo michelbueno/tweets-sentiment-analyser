@@ -17,7 +17,7 @@ class TweetsInteractorTest: QuickSpec {
         var sentimentScoreServiceMock: SentimentScoreServiceMock!
         var presenterMock: TweetsPresenterMock!
 
-        describe("TweetInteractorTest") {
+        describe("TweetInteractor") {
             beforeEach {
                 tweetServiceMock = TweetServiceMock()
                 tweetServiceMock.listToReturn = [Tweet()]
@@ -65,7 +65,7 @@ class TweetsInteractorTest: QuickSpec {
                     tweet.text = "a tweet"
                 }
 
-                it("it uses SentimentScoreService to fetch sentiment score") {
+                it("calls SentimentScoreService to fetch sentiment score") {
                     sut.getSentimentScoreForTweet(tweet)
 
                     expect(sentimentScoreServiceMock.didCallFetchSentimentScore).to(beTrue())
