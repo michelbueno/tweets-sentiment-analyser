@@ -22,7 +22,6 @@ class RemoteServiceTest: QuickSpec {
             context("GET") {
                 it("calls onFailure when request fails") {
                     stub(condition: isHost("dummy.api.com")) { _ in
-                        let obj = ["key1":"value1"]
                         let genericError = NSError(domain:"Generic error", code:Int(1234), userInfo:nil)
                         return HTTPStubsResponse(error:genericError)
                     }
@@ -63,7 +62,6 @@ class RemoteServiceTest: QuickSpec {
             context("POST") {
                 it("calls onFailure when request fails") {
                     stub(condition: isHost("dummy.api.com")) { _ in
-                        let obj = ["key1":"value1"]
                         let genericError = NSError(domain:"Generic error", code:Int(1234), userInfo:nil)
                         return HTTPStubsResponse(error:genericError)
                     }

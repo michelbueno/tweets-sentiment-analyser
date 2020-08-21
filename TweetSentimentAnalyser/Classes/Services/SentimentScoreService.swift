@@ -24,7 +24,7 @@ class SentimentScoreService: SentimentScoreServiceType {
 
     func fetchSentimentScore(for text: String, onSuccess: @escaping (SentimentScore) -> Void, onFailure: @escaping () -> Void) {
         remoteService?.post(
-                url: createFetchUserFinalURL(),
+                url: createFinalURL(),
                 parameters: createRequestBodyFor(text),
                 onSuccess: { response in
                     if let sentimentScore = self.parseSentimentScore(data: response) {
@@ -39,7 +39,7 @@ class SentimentScoreService: SentimentScoreServiceType {
         )
     }
 
-    private func createFetchUserFinalURL() -> URL {
+    private func createFinalURL() -> URL {
         var urlComponents = URLComponents(string: analyzeSentimentBaseURL)
         urlComponents?.queryItems = [URLQueryItem(name: "key", value: apiKey)]
 
@@ -69,7 +69,7 @@ class SentimentScoreService: SentimentScoreServiceType {
         let requestBody: [String : Any] = [
             "document" : [
                 "type":"PLAIN_TEXT",
-                "content":text
+                "content": text
             ],
             "encodingType": "UTF8"
         ]

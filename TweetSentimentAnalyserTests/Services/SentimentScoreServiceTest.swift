@@ -47,6 +47,7 @@ class SentimentScoreServiceTest: QuickSpec {
 
                 let param = remoteServiceMock.lastParametersCalled
                 expect(param).toNot(beNil())
+                //TODO: test request params
             }
 
             it("calls onSuccess with a valid score when request succeeds") {
