@@ -5,8 +5,6 @@
 
 import Foundation
 
-@testable import TweetSentimentAnalyser
-
 class SentimentScoreServiceMock: SentimentScoreServiceType {
     var remoteService: RemoteServiceType?
     var didCallFetchSentimentScore = false
