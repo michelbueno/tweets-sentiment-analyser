@@ -57,7 +57,7 @@ extension TweetsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tweet = tweets[indexPath.row]
-        let cell = TweetTableViewCell(style: .subtitle, reuseIdentifier: "tweetCell")
+        let cell = TweetsTableViewCell(style: .subtitle, reuseIdentifier: "tweetCell")
         cell.label.text = tweet.text
 
         if let sentimentScore = tweet.sentimentScore {

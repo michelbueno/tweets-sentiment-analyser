@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class TweetTableViewCell: UITableViewCell {
+class TweetsTableViewCell: UITableViewCell {
     var label: UILabel = {
         var label = UILabel(frame: .zero)
         label.textColor = .white
