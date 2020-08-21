@@ -6,23 +6,23 @@
 import Foundation
 import UIKit
 
-protocol HomeRouterType {
-    var tweetsRouter: TweetsRouterType? { get set }
+protocol HomeWireframeType {
+    var tweetsWireframe: TweetsWireframeType? { get set }
     func createModule() -> UINavigationController
     func navigateToTweetsList(with username: String)
 }
 
-class HomeRouter: HomeRouterType {
-    var tweetsRouter: TweetsRouterType?
+class HomeWireframe: HomeWireframeType {
+    var tweetsWireframe: TweetsWireframeType?
     var navigationController: UINavigationController?
 
     func createModule() -> UINavigationController {
-        let homeRouter = self
-        let tweetsRouter = TweetsRouter()
-        homeRouter.tweetsRouter = tweetsRouter
+        let homeWireframe = self
+        let tweetsWireframe = TweetsWireframe()
+        homeWireframe.tweetsWireframe = tweetsWireframe
 
         let presenter = HomePresenter()
-        presenter.router = homeRouter
+        presenter.wireframe = homeWireframe
 
         let viewController = HomeViewController()
         viewController.presenter = presenter
@@ -34,7 +34,7 @@ class HomeRouter: HomeRouterType {
     }
 
     func navigateToTweetsList(with username: String) {
-        guard let tweetsListViewController = tweetsRouter?.createModule(with: username) else {
+        guard let tweetsListViewController = tweetsWireframe?.createModule(with: username) else {
             fatalError("Failed to create Tweets module")
         }
 

@@ -8,7 +8,7 @@ import UIKit
 
 @testable import TweetSentimentAnalyser
 
-class TweetsRouterMock: TweetsRouterType {
+class TweetsWireframeMock: TweetsWireframeType {
     var didCallCreateModule = false
     var lastUsernameCalled: String?
 

@@ -6,17 +6,17 @@
 import Foundation
 
 protocol HomePresenterType {
-    var router: HomeRouterType? { get set }
+    var wireframe: HomeWireframeType? { get set }
     var view: HomeViewControllerType? { get set }
 
     func onAnaliseButtonPressed(username: String)
 }
 
 class HomePresenter: HomePresenterType {
-    var router: HomeRouterType?
+    var wireframe: HomeWireframeType?
     var view: HomeViewControllerType?
 
     func onAnaliseButtonPressed(username: String) {
-        router?.navigateToTweetsList(with: username)
+        wireframe?.navigateToTweetsList(with: username)
     }
 }

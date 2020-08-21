@@ -8,7 +8,7 @@ import Foundation
 @testable import TweetSentimentAnalyser
 
 class HomePresenterMock: HomePresenterType {
-    var router: HomeRouterType?
+    var wireframe: HomeWireframeType?
     var view: HomeViewControllerType?
 
     var didCallOnAnaliseButtonPressed = false

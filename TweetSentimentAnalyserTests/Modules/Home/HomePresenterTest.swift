@@ -12,24 +12,24 @@ import Nimble
 class HomePresenterTest: QuickSpec {
     override func spec() {
         describe("HomePresenter") {
-            var homeRouterMock: HomeRouterMock!
+            var homeWireframeMock: HomeWireframeMock!
             var homeViewControllerMock: HomeViewControllerMock!
             var sut: HomePresenter!
 
             beforeEach {
-                homeRouterMock = HomeRouterMock()
+                homeWireframeMock = HomeWireframeMock()
                 homeViewControllerMock = HomeViewControllerMock()
                 sut = HomePresenter()
-                sut.router = homeRouterMock
+                sut.wireframe = homeWireframeMock
                 sut.view = homeViewControllerMock
             }
 
             context("when analyze button is pressed"){
-                it("uses router to navigate to tweets list with username param") {
+                it("uses wireframe to navigate to tweets list with username param") {
                     sut.onAnaliseButtonPressed(username: "someUsername")
 
-                    expect(homeRouterMock.didCallNavigateToTweetsList).to(beTrue())
-                    expect(homeRouterMock.lasUsernameCalled).to(equal("someUsername"))
+                    expect(homeWireframeMock.didCallNavigateToTweetsList).to(beTrue())
+                    expect(homeWireframeMock.lasUsernameCalled).to(equal("someUsername"))
                 }
             }
         }

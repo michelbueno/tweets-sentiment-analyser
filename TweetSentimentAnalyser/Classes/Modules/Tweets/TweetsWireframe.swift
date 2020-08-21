@@ -6,11 +6,11 @@
 import Foundation
 import UIKit
 
-protocol TweetsRouterType {
+protocol TweetsWireframeType {
     func createModule(with username: String) -> TweetsViewController
 }
 
-class TweetsRouter: TweetsRouterType {
+class TweetsWireframe: TweetsWireframeType {
     func createModule(with username: String) -> TweetsViewController {
         let presenter = TweetsPresenter()
         let interactor = TweetsInteractor()

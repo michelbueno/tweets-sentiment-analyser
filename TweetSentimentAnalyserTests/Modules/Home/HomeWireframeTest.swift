@@ -9,16 +9,16 @@ import UIKit
 
 @testable import TweetSentimentAnalyser
 
-class HomeRouterTest: QuickSpec {
+class HomeWireframeTest: QuickSpec {
     override func spec() {
-        describe("HomeRouter") {
-            var sut: HomeRouter!
-            var tweetsRouterMock: TweetsRouterMock!
+        describe("HomeWireframe") {
+            var sut: HomeWireframe!
+            var tweetsWireframeMock: TweetsWireframeMock!
 
             beforeEach {
-                tweetsRouterMock = TweetsRouterMock()
-                sut = HomeRouter()
-                sut.tweetsRouter = tweetsRouterMock
+                tweetsWireframeMock = TweetsWireframeMock()
+                sut = HomeWireframe()
+                sut.tweetsWireframe = tweetsWireframeMock
             }
 
             it("creates home module with HomeViewController as root view controller") {
@@ -28,11 +28,11 @@ class HomeRouterTest: QuickSpec {
                 expect(module.viewControllers.first!).to(beAKindOf(HomeViewController.self))
             }
 
-            it("uses tweets router to navigate to tweets list screen") {
+            it("uses TweetsWireframe to navigate to tweets list screen") {
                 sut.navigateToTweetsList(with: "someUsername")
 
-                expect(tweetsRouterMock.didCallCreateModule).to(beTrue())
-                expect(tweetsRouterMock.lastUsernameCalled).to(equal("someUsername"))
+                expect(tweetsWireframeMock.didCallCreateModule).to(beTrue())
+                expect(tweetsWireframeMock.lastUsernameCalled).to(equal("someUsername"))
             }
         }
 

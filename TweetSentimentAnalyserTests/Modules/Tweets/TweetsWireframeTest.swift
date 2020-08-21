@@ -9,13 +9,13 @@ import Nimble
 
 @testable import TweetSentimentAnalyser
 
-class TweetsRouterTest: QuickSpec {
+class TweetsWireframeTest: QuickSpec {
     override func spec() {
-        describe("TweetsRouter") {
-            var sut: TweetsRouter!
+        describe("TweetsWireframe") {
+            var sut: TweetsWireframe!
 
             beforeEach {
-                sut = TweetsRouter()
+                sut = TweetsWireframe()
             }
 
             it("creates tweets module with proper username") {

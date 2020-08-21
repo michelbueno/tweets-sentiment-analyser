@@ -8,8 +8,8 @@ import UIKit
 
 @testable import TweetSentimentAnalyser
 
-class HomeRouterMock: HomeRouterType {
-    var tweetsRouter: TweetsRouterType?
+class HomeWireframeMock: HomeWireframeType {
+    var tweetsWireframe: TweetsWireframeType?
 
     var didCallCreateModule = false
     var didCallNavigateToTweetsList = false
