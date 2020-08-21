@@ -41,8 +41,10 @@ class TweetService: TweetServiceType {
         if let tweetsArrayObject = try! JSONSerialization.jsonObject(with: data!, options: []) as? [Dictionary<String,AnyObject>] {
             for tweetObject in tweetsArrayObject {
                 let tweetText = tweetObject["text"] as! String
+                let tweetId = tweetObject["id_str"] as! String
                 let tweet = Tweet()
                 tweet.text = tweetText
+                tweet.id = tweetId
                 tweets.append(tweet)
             }
         }
