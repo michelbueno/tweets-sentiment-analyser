@@ -13,13 +13,13 @@ enum SentimentScore {
 
 protocol SentimentScoreServiceType {
     var remoteService: RemoteServiceType? { get set }
-    func fetchSentimentScore(for text: String, onSuccess: @escaping (SentimentScore) -> Void, onFailure: @escaping () -> Void)
+    func fetchSentimentScore(forText text: String, onSuccess: @escaping (SentimentScore) -> Void, onFailure: @escaping () -> Void)
 }
 
 class SentimentScoreService: SentimentScoreServiceType {
     var remoteService: RemoteServiceType?
 
-    func fetchSentimentScore(for text: String, onSuccess: @escaping (SentimentScore) -> Void, onFailure: @escaping () -> Void) {
+    func fetchSentimentScore(forText text: String, onSuccess: @escaping (SentimentScore) -> Void, onFailure: @escaping () -> Void) {
         remoteService?.post(
                 url: createFinalURL(),
                 parameters: createRequestBodyFor(text),

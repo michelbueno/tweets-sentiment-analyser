@@ -29,11 +29,11 @@ class TweetsPresenter: TweetsPresenterType {
     }
 
     func loadView(with username: String) {
-        interactor?.fetchTweetsFor(username)
+        interactor?.fetchTweets(forUsername: username, startingFrom: nil)
     }
 
     func viewWillDisplayCellForTweet(_ tweet: Tweet) {
-        interactor?.getSentimentScoreForTweet(tweet)
+        interactor?.getSentimentScore(forTweet: tweet)
     }
 
     func updateTweet(_ tweet: Tweet) {

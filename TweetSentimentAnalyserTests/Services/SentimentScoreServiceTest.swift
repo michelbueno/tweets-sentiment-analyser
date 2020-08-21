@@ -23,14 +23,14 @@ class SentimentScoreServiceTest: QuickSpec {
             }
 
             it("uses RemoteService post to fetchSentimentScore") {
-                sut.fetchSentimentScore(for: "dummy text", onSuccess: { _ in } , onFailure: {})
+                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in } , onFailure: {})
 
                 expect(remoteServiceMock.didCallPost).to(beTrue())
             }
 
             it("uses correct url to fetch sentiment score") {
                 let expectedUrl = "https://language.googleapis.com/v1/documents:analyzeSentiment?key=AIzaSyBzk0lW8fgTxmcngQwAkAtHQli8QofFjSo"
-                sut.fetchSentimentScore(for: "dummy text", onSuccess: { _ in } , onFailure: {})
+                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in } , onFailure: {})
 
                 expect(remoteServiceMock.lastUrlCalled?.absoluteString).to(equal(expectedUrl))
             }
@@ -43,7 +43,7 @@ class SentimentScoreServiceTest: QuickSpec {
                     ],
                     "encodingType": "UTF8"
                 ]
-                sut.fetchSentimentScore(for: "dummy text", onSuccess: { _ in } , onFailure: {})
+                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in } , onFailure: {})
 
                 let param = remoteServiceMock.lastParametersCalled
                 expect(param).toNot(beNil())
@@ -53,7 +53,7 @@ class SentimentScoreServiceTest: QuickSpec {
             it("calls onSuccess with a valid score when request succeeds") {
                 var didCallOnSuccess = false
                 var parsedScore: SentimentScore?
-                sut.fetchSentimentScore(for: "dummy text",
+                sut.fetchSentimentScore(forText: "dummy text",
                         onSuccess: { score in
                             didCallOnSuccess = true
                             parsedScore = score
@@ -68,7 +68,7 @@ class SentimentScoreServiceTest: QuickSpec {
                 remoteServiceMock.returnError = true
                 var didCallOnFailure = false
 
-                sut.fetchSentimentScore(for: "dummy text", onSuccess: { _ in }, onFailure:{
+                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in }, onFailure:{
                     didCallOnFailure = true
                 })
 
@@ -79,7 +79,7 @@ class SentimentScoreServiceTest: QuickSpec {
                 it("returns 'sad' if score value is between -1.0 and -0.25") {
                     remoteServiceMock.dataToReturn = "{\"documentSentiment\": {\"score\": -0.5}}".data(using: .utf8)
                     var parsedScore: SentimentScore?
-                    sut.fetchSentimentScore(for: "dummy text",
+                    sut.fetchSentimentScore(forText: "dummy text",
                             onSuccess: { score in
                                 parsedScore = score
                             }, onFailure: {}
@@ -91,7 +91,7 @@ class SentimentScoreServiceTest: QuickSpec {
                 it("returns '.neutral' if score value is between -0.25 and 0.25") {
                     remoteServiceMock.dataToReturn = "{\"documentSentiment\": {\"score\": -0.1}}".data(using: .utf8)
                     var parsedScore: SentimentScore?
-                    sut.fetchSentimentScore(for: "dummy text",
+                    sut.fetchSentimentScore(forText: "dummy text",
                             onSuccess: { score in
                                 parsedScore = score
                             }, onFailure: {}
@@ -103,7 +103,7 @@ class SentimentScoreServiceTest: QuickSpec {
                 it("returns '.happy' if score value is between 0.25 and 1.0") {
                     remoteServiceMock.dataToReturn = "{\"documentSentiment\": {\"score\": 0.7}}".data(using: .utf8)
                     var parsedScore: SentimentScore?
-                    sut.fetchSentimentScore(for: "dummy text",
+                    sut.fetchSentimentScore(forText: "dummy text",
                             onSuccess: { score in
                                 parsedScore = score
                             }, onFailure: {}

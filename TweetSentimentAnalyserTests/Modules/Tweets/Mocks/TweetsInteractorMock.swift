@@ -14,15 +14,15 @@ class TweetsInteractorMock: TweetsInteractorType {
     var didCallFetchTweets = false
     var didCallGetSentimentScoreForTweet = false
     var lastTweetCalled: Tweet?
-
+    var lastStartingFromCalled: String?
     var lastUsernameCalled: String?
 
-    func fetchTweetsFor(_ username: String) {
+    func fetchTweets(forUsername username: String, startingFrom tweetId: String?) {
         didCallFetchTweets = true
         lastUsernameCalled = username
     }
 
-    func getSentimentScoreForTweet(_ tweet: Tweet) {
+    func getSentimentScore(forTweet tweet: Tweet) {
         didCallGetSentimentScoreForTweet = true
         lastTweetCalled = tweet
     }

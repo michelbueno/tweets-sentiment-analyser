@@ -7,16 +7,17 @@ import Foundation
 
 protocol TweetServiceType {
     var remoteService: RemoteServiceType? { get set }
-    func fetchTweetsTextFor(username: String, onSuccess: @escaping ([Tweet]) -> Void, onFailure: @escaping () -> Void)
+    func fetchTweets(forUsername username: String, startingFrom tweetId: String?, onSuccess: @escaping ([Tweet]) -> Void, onFailure: @escaping () -> Void)
 }
 
 class TweetService: TweetServiceType {
     var remoteService: RemoteServiceType?
+    let authorizationToken = Bundle.main.infoDictionary?["TWITTER_BEARER_TOKEN"] as! String
+    let defaultCount = 30
 
-    func fetchTweetsTextFor(username: String, onSuccess: @escaping ([Tweet]) -> Void, onFailure: @escaping () -> Void) {
-        let authorizationToken = Bundle.main.infoDictionary?["TWITTER_BEARER_TOKEN"] as! String
+    func fetchTweets(forUsername username: String, startingFrom tweetId: String?, onSuccess: @escaping ([Tweet]) -> Void, onFailure: @escaping () -> Void) {
         remoteService?.get(
-                url: createFetchTweetsFinalURL(username: username),
+                url: createFetchTweetsFinalURL(username, tweetId),
                 headers: ["Authorization":"Bearer \(authorizationToken)"],
                 onSuccess: { data in
                     let tweets = self.parseTweetsData(data: data)
@@ -27,11 +28,18 @@ class TweetService: TweetServiceType {
         )
     }
 
-    private func createFetchTweetsFinalURL(username: String) -> URL {
+    private func createFetchTweetsFinalURL(_ username: String, _ tweetId: String?) -> URL {
         let fetchTweetsServiceUrl = Bundle.main.infoDictionary?["FETCH_TWEETS_SERVICE_URL"] as! String
         
         var urlComponents = URLComponents(string: fetchTweetsServiceUrl)
-        urlComponents?.queryItems = [URLQueryItem(name: "screen_name", value: username)]
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "screen_name", value: username),
+            URLQueryItem(name: "count", value: "\(defaultCount)")
+        ]
+
+        if let max_id = tweetId {
+            urlComponents?.queryItems?.append(URLQueryItem(name: "max_id", value: max_id))
+        }
 
         return (urlComponents?.url)!
     }
@@ -40,11 +48,9 @@ class TweetService: TweetServiceType {
         var tweets: [Tweet] = []
         if let tweetsArrayObject = try! JSONSerialization.jsonObject(with: data!, options: []) as? [Dictionary<String,AnyObject>] {
             for tweetObject in tweetsArrayObject {
-                let tweetText = tweetObject["text"] as! String
-                let tweetId = tweetObject["id_str"] as! String
                 let tweet = Tweet()
-                tweet.text = tweetText
-                tweet.id = tweetId
+                tweet.text = tweetObject["text"] as? String
+                tweet.id = tweetObject["id_str"] as? String
                 tweets.append(tweet)
             }
         }

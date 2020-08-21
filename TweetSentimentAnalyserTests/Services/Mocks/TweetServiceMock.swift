@@ -14,16 +14,16 @@ class TweetServiceMock: TweetServiceType {
     var lastUsernameCalled: String?
     var returnError = false
     var listToReturn: [Tweet]?
+    var lastStartingFromCalled: String?
 
-    func fetchTweetsTextFor(username: String, onSuccess: @escaping ([Tweet]) -> Void, onFailure: @escaping () -> Void) {
+    func fetchTweets(forUsername username: String, startingFrom tweetId: String?, onSuccess: @escaping ([Tweet]) -> Void, onFailure: @escaping () -> Void) {
         didCallFetchTweetsText = true
         lastUsernameCalled = username
+        lastStartingFromCalled = tweetId
         if returnError {
             onFailure()
         } else {
             onSuccess(listToReturn!)
         }
     }
-
-
 }

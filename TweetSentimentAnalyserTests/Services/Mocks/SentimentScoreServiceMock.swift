@@ -12,7 +12,7 @@ class SentimentScoreServiceMock: SentimentScoreServiceType {
     var sentimentScoreToReturn: SentimentScore?
     var lastTextCalled: String?
 
-    func fetchSentimentScore(for text: String, onSuccess: @escaping (SentimentScore) -> Void, onFailure: @escaping () -> Void) {
+    func fetchSentimentScore(forText text: String, onSuccess: @escaping (SentimentScore) -> Void, onFailure: @escaping () -> Void) {
         didCallFetchSentimentScore = true
         lastTextCalled = text
         if returnError {

@@ -33,17 +33,18 @@ class TweetsInteractorTest: QuickSpec {
             }
 
             context("when fetching tweets") {
-                it("uses TweetService to fetch tweets text list with correct params") {
-                    sut.fetchTweetsFor("someUsername")
+                it("uses TweetService to fetch tweets with correct params") {
+                    sut.fetchTweets(forUsername: "username", startingFrom: "123456")
 
                     expect(tweetServiceMock.didCallFetchTweetsText).to(beTrue())
-                    expect(tweetServiceMock.lastUsernameCalled).to(equal("someUsername"))
+                    expect(tweetServiceMock.lastUsernameCalled).to(equal("username"))
+                    expect(tweetServiceMock.lastStartingFromCalled).to(equal("123456"))
                 }
 
                 it("calls presenter to show error when TweetService fails") {
                     tweetServiceMock.returnError = true
 
-                    sut.fetchTweetsFor("someUsername")
+                    sut.fetchTweets(forUsername: "username", startingFrom: nil)
 
                     expect(presenterMock.didCallFailedToFetchTweets).to(beTrue())
                 }
@@ -51,7 +52,7 @@ class TweetsInteractorTest: QuickSpec {
                 it("calls presenter with a list of tweets when request succeeds") {
                     tweetServiceMock.listToReturn = [Tweet()]
 
-                    sut.fetchTweetsFor("someUsername")
+                    sut.fetchTweets(forUsername: "username", startingFrom: nil)
 
                     expect(presenterMock.didCallShowTweets).to(beTrue())
                 }
@@ -66,7 +67,7 @@ class TweetsInteractorTest: QuickSpec {
                 }
 
                 it("calls SentimentScoreService to fetch sentiment score") {
-                    sut.getSentimentScoreForTweet(tweet)
+                    sut.getSentimentScore(forTweet: tweet)
 
                     expect(sentimentScoreServiceMock.didCallFetchSentimentScore).to(beTrue())
                     expect(sentimentScoreServiceMock.lastTextCalled).to(equal("a tweet"))
@@ -75,14 +76,14 @@ class TweetsInteractorTest: QuickSpec {
                 it("calls presenter when SentimentScoreService fails") {
                     sentimentScoreServiceMock.returnError = true
 
-                    sut.getSentimentScoreForTweet(tweet)
+                    sut.getSentimentScore(forTweet: tweet)
 
                     expect(presenterMock.didCallFailedToGetSentimentScoreForTweet).to(beTrue())
                     expect(presenterMock.lastTweeCalledByFailedToGetSentimentScore?.text).to(equal("a tweet"))
                 }
 
                 it("calls presenter to update the Tweet") {
-                    sut.getSentimentScoreForTweet(tweet)
+                    sut.getSentimentScore(forTweet: tweet)
 
                     expect(presenterMock.didCallUpdateTweet).to(beTrue())
                     expect(presenterMock.lastTweetCalledByUpdateTweet?.text).to(equal("a tweet"))

@@ -9,8 +9,8 @@ protocol TweetsInteractorType {
     var presenter: TweetsPresenterType? { get set }
     var tweetService: TweetServiceType? { get set }
     var sentimentScoreService: SentimentScoreServiceType? { get set }
-    func fetchTweetsFor(_ username: String)
-    func getSentimentScoreForTweet(_: Tweet)
+    func fetchTweets(forUsername username: String, startingFrom tweetId: String?)
+    func getSentimentScore(forTweet tweet: Tweet)
 }
 
 class TweetsInteractor: TweetsInteractorType {
@@ -18,16 +18,16 @@ class TweetsInteractor: TweetsInteractorType {
     var tweetService: TweetServiceType?
     var sentimentScoreService: SentimentScoreServiceType?
 
-    func fetchTweetsFor(_ username: String) {
-        tweetService?.fetchTweetsTextFor(username: username, onSuccess: { [unowned self] tweetsList in
+    func fetchTweets(forUsername username: String, startingFrom tweetId: String?) {
+        tweetService?.fetchTweets(forUsername: username, startingFrom: tweetId, onSuccess: { [unowned self] tweetsList in
             self.presenter?.loadTweets(tweetsList)
         }, onFailure: {
             self.presenter?.failedToFetchTweets()
         })
     }
 
-    func getSentimentScoreForTweet(_ tweet: Tweet) {
-        sentimentScoreService?.fetchSentimentScore(for: tweet.text!, onSuccess: { [unowned self] sentimentScore in
+    func getSentimentScore(forTweet tweet: Tweet) {
+        sentimentScoreService?.fetchSentimentScore(forText: tweet.text!, onSuccess: { [unowned self] sentimentScore in
             tweet.sentimentScore = sentimentScore
             self.presenter?.updateTweet(tweet)
         }, onFailure: {

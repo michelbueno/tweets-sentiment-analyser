@@ -22,16 +22,22 @@ class TweetServiceTest: QuickSpec {
                 remoteServiceMock.dataToReturn = "[{\"id_str\": \"1234567890\",\"text\": \"dummy text\"}]".data(using: .utf8)
             }
 
-            it("uses correct url to fetch tweets for a given username") {
-                sut.fetchTweetsTextFor(username: "someUsername", onSuccess: { _ in}, onFailure: {})
-                let expectedUrl = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=someUsername"
+            it("uses correct params on url to fetch tweets for a given username") {
+                sut.fetchTweets(forUsername: "someUsername", startingFrom: nil, onSuccess: { _ in}, onFailure: {})
+                let expectedUrl = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=someUsername&count=30"
+
+                expect(remoteServiceMock.lastUrlCalled?.absoluteString).to(equal(expectedUrl))
+            }
+            it("uses sends 'max_id' url to fetch tweets for a given username when startingFrom is not nil") {
+                sut.fetchTweets(forUsername: "someUsername", startingFrom: "123456", onSuccess: { _ in}, onFailure: {})
+                let expectedUrl = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=someUsername&count=30&max_id=123456"
 
                 expect(remoteServiceMock.lastUrlCalled?.absoluteString).to(equal(expectedUrl))
             }
 
             it("sends authorization header with Bearer token") {
                 let expectedTokenValue = "Bearer AAAAAAAAAAAAAAAAAAAAACePGwEAAAAAKz0vO7llEv6OT2m6HHujVXuJQPc%3DP7KXorCKshg4c8GeYEd47ywLzilKDxiKMg9ZiT3PcrgMptK6ai"
-                sut.fetchTweetsTextFor(username: "someUsername", onSuccess: { _ in}, onFailure: {})
+                sut.fetchTweets(forUsername: "someUsername", startingFrom: nil, onSuccess: { _ in}, onFailure: {})
 
                 expect(remoteServiceMock.lastHeadersCalled).toNot(beNil())
                 expect(remoteServiceMock.lastHeadersCalled?.value(for: "Authorization")).to(equal(expectedTokenValue))
@@ -41,7 +47,7 @@ class TweetServiceTest: QuickSpec {
                 remoteServiceMock.returnError = true
                 var didCallOnFailure = false
 
-                sut.fetchTweetsTextFor(username: "someUsername", onSuccess: { _ in }, onFailure: {
+                sut.fetchTweets(forUsername: "someUsername", startingFrom: nil, onSuccess: { _ in }, onFailure: {
                     didCallOnFailure = true
                 })
 
@@ -50,7 +56,7 @@ class TweetServiceTest: QuickSpec {
 
             it("call onSuccess with a valid text array when request succeeds") {
                 var returnedTweeList: [Tweet]?
-                sut.fetchTweetsTextFor(username: "someUsername", onSuccess: { tweetList in
+                sut.fetchTweets(forUsername: "someUsername", startingFrom: nil, onSuccess: { tweetList in
                     returnedTweeList = tweetList
                 }, onFailure: {})
 
