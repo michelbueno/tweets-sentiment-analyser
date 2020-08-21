@@ -8,7 +8,7 @@ import UIKit
 
 protocol TweetsViewControllerType {
     var presenter: TweetsPresenterType? { get set }
-    func loadTweets(_ tweetsList: [String])
+    func loadTweets(_ tweetsList: [Tweet])
     func showError()
 }
 
@@ -19,7 +19,7 @@ class TweetsViewController: UIViewController, TweetsViewControllerType {
     unowned var tableView: UITableView { tweetsView.tweetsTableView }
 
     var username: String?
-    var tweets: [String] = []
+    var tweets: [Tweet] = []
     var cachedScore: [String: SentimentScore] = [:]
 
     override func loadView() {
@@ -29,7 +29,7 @@ class TweetsViewController: UIViewController, TweetsViewControllerType {
         self.navigationItem.title = "@\(username!)"
     }
 
-    func loadTweets(_ tweetsList: [String]) {
+    func loadTweets(_ tweetsList: [Tweet]) {
         tweets.append(contentsOf: tweetsList)
         self.tableView.reloadData()
     }
@@ -49,17 +49,17 @@ extension TweetsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let text = tweets[indexPath.row]
-        let score = cachedScore[text]
+        let tweet = tweets[indexPath.row]
+        let score = cachedScore[tweet.id!]
 
         let cell = TweetTableViewCell(style: .subtitle, reuseIdentifier: "tweetCell")
-        cell.label.text = text
+        cell.label.text = tweets[indexPath.row].text
         if score == nil {
             DispatchQueue.main.async {
                 let sentimentService = SentimentScoreService()
                 sentimentService.remoteService = RemoteService()
-                sentimentService.fetchSentimentScore(for: self.tweets[indexPath.row], onSuccess: {[unowned self] sentimentScore in
-                    self.cachedScore[text] = sentimentScore
+                sentimentService.fetchSentimentScore(for: self.tweets[indexPath.row].text!, onSuccess: {[unowned self] sentimentScore in
+                    self.cachedScore[tweet.id!] = sentimentScore
                     self.tableView.reloadRows(at: [indexPath], with: .automatic)
                 }, onFailure: {
                     cell.detailTextLabel?.text = "error"

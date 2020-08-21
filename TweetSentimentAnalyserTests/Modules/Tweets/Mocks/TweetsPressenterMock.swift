@@ -14,7 +14,7 @@ class TweetsPresenterMock: TweetsPresenterType {
     var didCallLoadView = false
     var lastUsernameCalled: String?
     var didCallShowTweets = false
-    var lastTweetsListCalled: [String]?
+    var lastTweetsListCalled: [Tweet]?
     var didCallFailedToFetchTweets = false
 
     func loadView(with username: String) {
@@ -22,7 +22,7 @@ class TweetsPresenterMock: TweetsPresenterType {
         lastUsernameCalled = username
     }
 
-    func showTweets(_ tweetsList: [String]) {
+    func loadTweets(_ tweetsList: [Tweet]) {
         didCallShowTweets = true
         lastTweetsListCalled = tweetsList
     }

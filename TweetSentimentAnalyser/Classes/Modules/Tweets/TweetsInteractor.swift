@@ -17,8 +17,8 @@ class TweetsInteractor: TweetsInteractorType {
     var sentimentService: SentimentScoreServiceType?
 
     func fetchTweetsFor(_ username: String) {
-        tweetService?.fetchTweetsTextFor(username: username, onSuccess: { tweetsTextList in
-            self.presenter?.showTweets(tweetsTextList)
+        tweetService?.fetchTweetsTextFor(username: username, onSuccess: { tweetsList in
+            self.presenter?.loadTweets(tweetsList)
         }, onFailure: {
             self.presenter?.failedToFetchTweets()
         })

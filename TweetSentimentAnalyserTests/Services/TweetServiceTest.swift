@@ -49,14 +49,14 @@ class TweeServiceTest: QuickSpec {
             }
 
             it("call onSuccess with a valid text array when request succeeds") {
-                var returnedTextList: [String]?
-                sut.fetchTweetsTextFor(username: "someUsername", onSuccess: { textList in
-                    returnedTextList = textList
+                var returnedTweeList: [Tweet]?
+                sut.fetchTweetsTextFor(username: "someUsername", onSuccess: { tweetList in
+                    returnedTweeList = tweetList
                 }, onFailure: {})
 
-                expect(returnedTextList).toNot(beNil())
-                expect(returnedTextList?.count).to(equal(1))
-                expect(returnedTextList?.first).to(equal("dummy text"))
+                expect(returnedTweeList).toNot(beNil())
+                expect(returnedTweeList?.count).to(equal(1))
+                expect(returnedTweeList?.first?.text).to(equal("dummy text"))
 
             }
         }

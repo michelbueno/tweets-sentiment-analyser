@@ -19,7 +19,7 @@ class TweetsInteractorTest: QuickSpec {
         describe("TweetInteractorTest") {
             beforeEach {
                 tweetServiceMock = TweetServiceMock()
-                tweetServiceMock.listToReturn = ["a tweet", "another tweet"]
+                tweetServiceMock.listToReturn = [Tweet()]
                 presenterMock = TweetsPresenterMock()
 
                 sut = TweetsInteractor()
@@ -43,7 +43,7 @@ class TweetsInteractorTest: QuickSpec {
             }
 
             it("calls presenter with a list of tweets when request succeeds") {
-                tweetServiceMock.listToReturn = ["a tweet"]
+                tweetServiceMock.listToReturn = [Tweet()]
 
                 sut.fetchTweetsFor("someUsername")
 

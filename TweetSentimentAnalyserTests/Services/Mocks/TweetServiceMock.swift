@@ -13,9 +13,9 @@ class TweetServiceMock: TweetServiceType {
     var didCallFetchTweetsText = false
     var lastUsernameCalled: String?
     var returnError = false
-    var listToReturn: [String]?
+    var listToReturn: [Tweet]?
 
-    func fetchTweetsTextFor(username: String, onSuccess: @escaping ([String]) -> Void, onFailure: @escaping () -> Void) {
+    func fetchTweetsTextFor(username: String, onSuccess: @escaping ([Tweet]) -> Void, onFailure: @escaping () -> Void) {
         didCallFetchTweetsText = true
         lastUsernameCalled = username
         if returnError {

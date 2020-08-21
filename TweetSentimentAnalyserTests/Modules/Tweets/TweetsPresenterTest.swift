@@ -38,11 +38,10 @@ class TweetsPresenterTest: QuickSpec {
             }
 
             it("tells view show tweets passing a list a tweets") {
-                sut.showTweets(["a tweet"])
+                sut.loadTweets([Tweet()])
 
                 expect(viewMock.didCallLoadTweets).to(beTrue())
                 expect(viewMock.lastListCalled).toNot(beNil())
-                expect(viewMock.lastListCalled?.first).to(equal("a tweet"))
             }
         }
     }

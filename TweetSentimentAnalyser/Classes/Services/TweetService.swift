@@ -7,7 +7,7 @@ import Foundation
 
 protocol TweetServiceType {
     var remoteService: RemoteServiceType? { get set }
-    func fetchTweetsTextFor(username: String, onSuccess: @escaping ([String]) -> Void, onFailure: @escaping () -> Void)
+    func fetchTweetsTextFor(username: String, onSuccess: @escaping ([Tweet]) -> Void, onFailure: @escaping () -> Void)
 }
 
 class TweetService: TweetServiceType {
@@ -16,7 +16,7 @@ class TweetService: TweetServiceType {
     let bearerToken = "AAAAAAAAAAAAAAAAAAAAACePGwEAAAAAKz0vO7llEv6OT2m6HHujVXuJQPc%3DP7KXorCKshg4c8GeYEd47ywLzilKDxiKMg9ZiT3PcrgMptK6ai"
     let fetchUserBaseUrl = "https://api.twitter.com/1.1/statuses/user_timeline.json"
 
-    func fetchTweetsTextFor(username: String, onSuccess: @escaping ([String]) -> Void, onFailure: @escaping () -> Void) {
+    func fetchTweetsTextFor(username: String, onSuccess: @escaping ([Tweet]) -> Void, onFailure: @escaping () -> Void) {
         remoteService?.get(
                 url: createFetchUserFinalURL(username: username),
                 headers: ["Authorization":"Bearer \(bearerToken)"],
@@ -36,12 +36,16 @@ class TweetService: TweetServiceType {
         return (urlComponents?.url)!
     }
 
-    private func parseTweetsData(data: Data?) -> [String] {
-        var tweets: [String] = []
+    private func parseTweetsData(data: Data?) -> [Tweet] {
+        var tweets: [Tweet] = []
         if let tweetsArrayObject = try! JSONSerialization.jsonObject(with: data!, options: []) as? [Dictionary<String,AnyObject>] {
             for tweetObject in tweetsArrayObject {
                 let tweetText = tweetObject["text"] as! String
-                tweets.append(tweetText)
+                let tweetId = tweetObject["id_str"] as! String
+                let tweet = Tweet()
+                tweet.text = tweetText
+                tweet.id = tweetId
+                tweets.append(tweet)
             }
         }
         return tweets

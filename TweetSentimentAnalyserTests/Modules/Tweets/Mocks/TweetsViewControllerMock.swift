@@ -11,10 +11,10 @@ class TweetsViewControllerMock: TweetsViewControllerType {
     var presenter: TweetsPresenterType?
 
     var didCallLoadTweets = false
-    var lastListCalled: [String]?
+    var lastListCalled: [Tweet]?
     var didCallShowError = false
 
-    func loadTweets(_ tweetsList: [String]) {
+    func loadTweets(_ tweetsList: [Tweet]) {
         didCallLoadTweets = true
         lastListCalled = tweetsList
     }

@@ -9,7 +9,7 @@ protocol TweetsPresenterType {
     var view: TweetsViewControllerType? { get set }
     var interactor: TweetsInteractorType? { get set }
     func loadView(with username: String)
-    func showTweets(_ tweetsList: [String])
+    func loadTweets(_ tweetsList: [Tweet])
     func failedToFetchTweets()
 }
 
@@ -21,7 +21,7 @@ class TweetsPresenter: TweetsPresenterType {
         view?.showError()
     }
 
-    func showTweets(_ tweetsList: [String]) {
+    func loadTweets(_ tweetsList: [Tweet]) {
         view?.loadTweets(tweetsList)
     }
 
