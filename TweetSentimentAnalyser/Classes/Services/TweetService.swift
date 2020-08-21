@@ -13,13 +13,11 @@ protocol TweetServiceType {
 class TweetService: TweetServiceType {
     var remoteService: RemoteServiceType?
 
-    let bearerToken = "AAAAAAAAAAAAAAAAAAAAACePGwEAAAAAKz0vO7llEv6OT2m6HHujVXuJQPc%3DP7KXorCKshg4c8GeYEd47ywLzilKDxiKMg9ZiT3PcrgMptK6ai"
-    let fetchUserBaseUrl = "https://api.twitter.com/1.1/statuses/user_timeline.json"
-
     func fetchTweetsTextFor(username: String, onSuccess: @escaping ([Tweet]) -> Void, onFailure: @escaping () -> Void) {
+        let authorizationToken = Bundle.main.infoDictionary?["TWITTER_BEARER_TOKEN"] as! String
         remoteService?.get(
-                url: createFetchUserFinalURL(username: username),
-                headers: ["Authorization":"Bearer \(bearerToken)"],
+                url: createFetchTweetsFinalURL(username: username),
+                headers: ["Authorization":"Bearer \(authorizationToken)"],
                 onSuccess: { data in
                     let tweets = self.parseTweetsData(data: data)
                     onSuccess(tweets)
@@ -29,8 +27,10 @@ class TweetService: TweetServiceType {
         )
     }
 
-    private func createFetchUserFinalURL(username: String) -> URL {
-        var urlComponents = URLComponents(string: fetchUserBaseUrl)
+    private func createFetchTweetsFinalURL(username: String) -> URL {
+        let fetchTweetsServiceUrl = Bundle.main.infoDictionary?["FETCH_TWEETS_SERVICE_URL"] as! String
+        
+        var urlComponents = URLComponents(string: fetchTweetsServiceUrl)
         urlComponents?.queryItems = [URLQueryItem(name: "screen_name", value: username)]
 
         return (urlComponents?.url)!

@@ -19,9 +19,6 @@ protocol SentimentScoreServiceType {
 class SentimentScoreService: SentimentScoreServiceType {
     var remoteService: RemoteServiceType?
 
-    let apiKey = "AIzaSyBzk0lW8fgTxmcngQwAkAtHQli8QofFjSo"
-    let analyzeSentimentBaseURL = "https://language.googleapis.com/v1/documents:analyzeSentiment"
-
     func fetchSentimentScore(for text: String, onSuccess: @escaping (SentimentScore) -> Void, onFailure: @escaping () -> Void) {
         remoteService?.post(
                 url: createFinalURL(),
@@ -40,7 +37,10 @@ class SentimentScoreService: SentimentScoreServiceType {
     }
 
     private func createFinalURL() -> URL {
-        var urlComponents = URLComponents(string: analyzeSentimentBaseURL)
+        let apiKey = Bundle.main.infoDictionary?["GOOGLE_API_KEY"] as! String
+        let sentimentScoreServiceUrl = Bundle.main.infoDictionary?["SENTIMENT_SCORE_SERVICE_URL"] as! String
+        
+        var urlComponents = URLComponents(string: sentimentScoreServiceUrl)
         urlComponents?.queryItems = [URLQueryItem(name: "key", value: apiKey)]
 
         return (urlComponents?.url)!
