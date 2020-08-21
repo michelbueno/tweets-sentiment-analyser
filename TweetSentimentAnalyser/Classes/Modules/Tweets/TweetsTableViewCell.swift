@@ -54,11 +54,17 @@ class TweetsTableViewCell: UITableViewCell {
         }
     }
 
+    func configureUnknownSentimentScore() {
+        self.activityIndicator.isHidden = true
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     func configureImageForSentimentScore(_ score: SentimentScore) {
+        self.activityIndicator.isHidden = true
+
         switch score {
         case .sad:
             self.imageView?.image = UIImage(named: "sad")

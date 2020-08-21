@@ -20,6 +20,8 @@ class TweetsPresenterMock: TweetsPresenterType {
     var lastTweetCalledByWillDisplayCell: Tweet?
     var didCallUpdateTweet = false
     var lastTweetCalledByUpdateTweet: Tweet?
+    var didCallFailedToGetSentimentScoreForTweet = false
+    var lastTweeCalledByFailedToGetSentimentScore: Tweet?
 
     func loadView(with username: String) {
         didCallLoadView = true
@@ -43,5 +45,10 @@ class TweetsPresenterMock: TweetsPresenterType {
     func updateTweet(_ tweet: Tweet) {
         didCallUpdateTweet = true
         lastTweetCalledByUpdateTweet = tweet
+    }
+
+    func failedToGetSentimentScoreForTweet(_ tweet: Tweet) {
+        didCallFailedToGetSentimentScoreForTweet = true
+        lastTweeCalledByFailedToGetSentimentScore = tweet
     }
 }

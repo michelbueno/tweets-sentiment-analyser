@@ -13,6 +13,7 @@ protocol TweetsPresenterType {
     func failedToFetchTweets()
     func viewWillDisplayCellForTweet(_: Tweet)
     func updateTweet(_: Tweet)
+    func failedToGetSentimentScoreForTweet(_: Tweet)
 }
 
 class TweetsPresenter: TweetsPresenterType {
@@ -37,5 +38,9 @@ class TweetsPresenter: TweetsPresenterType {
 
     func updateTweet(_ tweet: Tweet) {
         view?.updateTweet(tweet)
+    }
+
+    func failedToGetSentimentScoreForTweet(_ tweet: Tweet) {
+        view?.setUnknownScoreForTweet(tweet)
     }
 }

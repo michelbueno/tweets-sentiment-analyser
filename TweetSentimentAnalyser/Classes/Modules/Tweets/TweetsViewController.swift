@@ -11,6 +11,7 @@ protocol TweetsViewControllerType {
     func loadTweets(_ tweetsList: [Tweet])
     func showError()
     func updateTweet(_: Tweet)
+    func setUnknownScoreForTweet(_: Tweet)
 }
 
 class TweetsViewController: UIViewController, TweetsViewControllerType {
@@ -41,8 +42,21 @@ class TweetsViewController: UIViewController, TweetsViewControllerType {
     func updateTweet(_ tweet: Tweet) {
         let index = tweets.firstIndex { $0 === tweet }
         tweets[index!] = tweet
+        let indexPath = IndexPath(row: index!, section: 0)
 
-        self.tableView.reloadRows(at: [IndexPath(row: index!, section: 0)], with: .fade)
+        if (tableView.indexPathsForVisibleRows?.contains(indexPath))! {
+            self.tableView.reloadRows(at: [indexPath], with: .fade)
+        }
+    }
+
+    func setUnknownScoreForTweet(_ tweet: Tweet) {
+        let index = tweets.firstIndex { $0 === tweet }
+        let indexPath = IndexPath(row: index!, section: 0)
+
+        if (tableView.indexPathsForVisibleRows?.contains(indexPath))! {
+            let cell = tableView.cellForRow(at: indexPath) as! TweetsTableViewCell
+            cell.configureUnknownSentimentScore()
+        }
     }
 }
 

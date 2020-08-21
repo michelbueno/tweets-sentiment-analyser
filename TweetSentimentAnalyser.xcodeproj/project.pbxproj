@@ -27,6 +27,7 @@
 		11B9102F8F8CCD7BC239D473FF7707AA /* RemoteServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914B3785B42B4DEE4A78520CCF8B5E98 /* RemoteServiceMock.swift */; };
 		A281286B12285F06A44B16C1CEE35749 /* RemoteServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8952D6F56F9CC0454BE7610970C2AB0 /* RemoteServiceTest.swift */; };
 		4357B48EA3BFF29E01B4BD7E0D643C63 /* SentimentScoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3840FDD0632C1565BFF8F141AD1E74 /* SentimentScoreService.swift */; };
+		C7DFB339735D52756F486BD3E62AC7FD /* SentimentScoreServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC0CD90C276AFDDAE6C82A492E4D370 /* SentimentScoreServiceMock.swift */; };
 		5F45D0B3EF808D34279711AD39523B9B /* SentimentScoreServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB89C4A5E366527F2226C7DEE6F11D5 /* SentimentScoreServiceTest.swift */; };
 		3378968F019B5ED07437B339960BCFD0 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6829BFA472170F7609BB0F259F12EB32 /* Tweet.swift */; };
 		C5E1F1517B95BB7B09BE67E48688B803 /* TweetSentimentAnalyserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8220A778D7466D013993CE764A00BC4 /* TweetSentimentAnalyserUITests.swift */; };
@@ -99,6 +100,7 @@
 		914B3785B42B4DEE4A78520CCF8B5E98 /* RemoteServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteServiceMock.swift; sourceTree = "<group>"; };
 		C8952D6F56F9CC0454BE7610970C2AB0 /* RemoteServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteServiceTest.swift; sourceTree = "<group>"; };
 		1A3840FDD0632C1565BFF8F141AD1E74 /* SentimentScoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentimentScoreService.swift; sourceTree = "<group>"; };
+		5DC0CD90C276AFDDAE6C82A492E4D370 /* SentimentScoreServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentimentScoreServiceMock.swift; sourceTree = "<group>"; };
 		BFB89C4A5E366527F2226C7DEE6F11D5 /* SentimentScoreServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentimentScoreServiceTest.swift; sourceTree = "<group>"; };
 		6829BFA472170F7609BB0F259F12EB32 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		58B5414DB77E9359C4B7C055015264DE /* TweetSentimentAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TweetSentimentAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				914B3785B42B4DEE4A78520CCF8B5E98 /* RemoteServiceMock.swift */,
+				5DC0CD90C276AFDDAE6C82A492E4D370 /* SentimentScoreServiceMock.swift */,
 				201B03CA70B418CE719A23A34E528A6A /* TweetServiceMock.swift */,
 			);
 			path = Mocks;
@@ -703,6 +706,7 @@
 				25C0653436E1EDBD87E4B700C7F1B561 /* HomeWireframe.swift in Sources */,
 				40DA0B06F5A1AA377DD31A9F5CA93126 /* RemoteService.swift in Sources */,
 				4357B48EA3BFF29E01B4BD7E0D643C63 /* SentimentScoreService.swift in Sources */,
+				C7DFB339735D52756F486BD3E62AC7FD /* SentimentScoreServiceMock.swift in Sources */,
 				3378968F019B5ED07437B339960BCFD0 /* Tweet.swift in Sources */,
 				852546C0087BD4DE7EEB5E5ECEEDD72F /* TweetService.swift in Sources */,
 				57D310D7098BFC23AD3FA101D399CF4B /* TweetsInteractor.swift in Sources */,

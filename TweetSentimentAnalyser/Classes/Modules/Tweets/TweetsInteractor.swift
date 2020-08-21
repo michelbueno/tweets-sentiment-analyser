@@ -31,7 +31,7 @@ class TweetsInteractor: TweetsInteractorType {
             tweet.sentimentScore = sentimentScore
             self.presenter?.updateTweet(tweet)
         }, onFailure: {
-
+            self.presenter?.failedToGetSentimentScoreForTweet(tweet)
         })
     }
 }
