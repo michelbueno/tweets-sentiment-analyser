@@ -29,6 +29,7 @@ class TweetTableViewCell: UITableViewCell {
 
     func setupUI() {
         self.backgroundColor = .darkGray
+
         self.contentView.addSubview(label)
         label.snp.makeConstraints { (make: ConstraintMaker) -> Void in
             make.left.equalToSuperview().offset(64)
@@ -55,5 +56,16 @@ class TweetTableViewCell: UITableViewCell {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func configureImageForSentimentScore(_ score: SentimentScore) {
+        switch score {
+        case .sad:
+            self.imageView?.image = UIImage(named: "sad")
+        case .neutral:
+            self.imageView?.image = UIImage(named: "neutral")
+        case .happy:
+            self.imageView?.image = UIImage(named: "happy")
+        }
     }
 }

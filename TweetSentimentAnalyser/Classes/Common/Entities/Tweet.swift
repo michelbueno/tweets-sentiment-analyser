@@ -8,5 +8,5 @@ import Foundation
 class Tweet {
     var text: String?
     var id: String?
-    var sentiment: SentimentScore?
+    var sentimentScore: SentimentScore?
 }

@@ -16,6 +16,10 @@ class TweetsPresenterMock: TweetsPresenterType {
     var didCallShowTweets = false
     var lastTweetsListCalled: [Tweet]?
     var didCallFailedToFetchTweets = false
+    var didCallViewWillDisplayCellForTweet = false
+    var lastTweetCalledByWillDisplayCell: Tweet?
+    var didCallUpdateTweet = false
+    var lastTweetCalledByUpdateTweet: Tweet?
 
     func loadView(with username: String) {
         didCallLoadView = true
@@ -29,5 +33,15 @@ class TweetsPresenterMock: TweetsPresenterType {
 
     func failedToFetchTweets() {
         didCallFailedToFetchTweets = true
+    }
+
+    func viewWillDisplayCellForTweet(_ tweet: Tweet) {
+        didCallViewWillDisplayCellForTweet = true
+        lastTweetCalledByWillDisplayCell = tweet
+    }
+
+    func updateTweet(_ tweet: Tweet) {
+        didCallUpdateTweet = true
+        lastTweetCalledByUpdateTweet = tweet
     }
 }

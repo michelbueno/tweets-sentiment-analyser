@@ -17,9 +17,12 @@ class TweetsRouter: TweetsRouterType {
 
         let remoteService  = RemoteService()
         let tweetService = TweetService()
+        let sentimentScoreService = SentimentScoreService()
 
         tweetService.remoteService = remoteService
+        sentimentScoreService.remoteService = remoteService
         interactor.tweetService = tweetService
+        interactor.sentimentScoreService = sentimentScoreService
 
         presenter.interactor = interactor
         interactor.presenter = presenter

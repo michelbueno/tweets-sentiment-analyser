@@ -10,6 +10,7 @@ protocol TweetsViewControllerType {
     var presenter: TweetsPresenterType? { get set }
     func loadTweets(_ tweetsList: [Tweet])
     func showError()
+    func updateTweet(_: Tweet)
 }
 
 class TweetsViewController: UIViewController, TweetsViewControllerType {
@@ -20,7 +21,6 @@ class TweetsViewController: UIViewController, TweetsViewControllerType {
 
     var username: String?
     var tweets: [Tweet] = []
-    var cachedScore: [String: SentimentScore] = [:]
 
     override func loadView() {
         self.view = TweetsView()
@@ -37,6 +37,13 @@ class TweetsViewController: UIViewController, TweetsViewControllerType {
     func showError() {
 
     }
+
+    func updateTweet(_ tweet: Tweet) {
+        let index = tweets.firstIndex { $0 === tweet }
+        tweets[index!] = tweet
+
+        self.tableView.reloadRows(at: [IndexPath(row: index!, section: 0)], with: .fade)
+    }
 }
 
 extension TweetsViewController: UITableViewDataSource {
@@ -50,32 +57,13 @@ extension TweetsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tweet = tweets[indexPath.row]
-        let score = cachedScore[tweet.id!]
-
         let cell = TweetTableViewCell(style: .subtitle, reuseIdentifier: "tweetCell")
-        cell.label.text = tweets[indexPath.row].text
-        if score == nil {
-            DispatchQueue.main.async {
-                let sentimentService = SentimentScoreService()
-                sentimentService.remoteService = RemoteService()
-                sentimentService.fetchSentimentScore(for: self.tweets[indexPath.row].text!, onSuccess: {[unowned self] sentimentScore in
-                    self.cachedScore[tweet.id!] = sentimentScore
-                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                }, onFailure: {
-                    cell.detailTextLabel?.text = "error"
-                })
-            }
+        cell.label.text = tweet.text
+
+        if let sentimentScore = tweet.sentimentScore {
+            cell.configureImageForSentimentScore(sentimentScore)
         } else {
-            switch score {
-            case .sad:
-                cell.imageView?.image = UIImage(named: "sad")
-            case .neutral:
-                cell.imageView?.image = UIImage(named: "neutral")
-            case .happy:
-                cell.imageView?.image = UIImage(named: "happy")
-            case .none:
-                cell.imageView?.image = UIImage(named: "neutral")
-            }
+            presenter?.viewWillDisplayCellForTweet(tweet)
         }
 
         return cell

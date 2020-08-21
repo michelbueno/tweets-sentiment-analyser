@@ -13,6 +13,8 @@ class TweetsViewControllerMock: TweetsViewControllerType {
     var didCallLoadTweets = false
     var lastListCalled: [Tweet]?
     var didCallShowError = false
+    var didCallUpdateTweet = false
+    var lastTweetCalled: Tweet?
 
     func loadTweets(_ tweetsList: [Tweet]) {
         didCallLoadTweets = true
@@ -21,5 +23,10 @@ class TweetsViewControllerMock: TweetsViewControllerType {
 
     func showError() {
         didCallShowError = true
+    }
+
+    func updateTweet(_ tweet: Tweet) {
+        didCallUpdateTweet = false
+        lastTweetCalled = tweet
     }
 }
