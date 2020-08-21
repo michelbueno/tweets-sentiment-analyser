@@ -31,8 +31,18 @@ class TweetsViewController: UIViewController, TweetsViewControllerType {
     }
 
     func loadTweets(_ tweetsList: [Tweet]) {
-        tweets.append(contentsOf: tweetsList)
-        self.tableView.reloadData()
+        if tweets.count == 0 {
+            tweets.append(contentsOf: tweetsList)
+            self.tableView.reloadData()
+        } else {
+            tweets.append(contentsOf: tweetsList)
+            var newIndexPaths = [IndexPath]()
+            for rowPosition in 0..<tweetsList.count {
+                let newIndexPath = IndexPath(row: tweetsList.count + rowPosition, section: 0)
+                newIndexPaths.append(newIndexPath)
+            }
+            self.tableView.insertRows(at: newIndexPaths, with: .automatic)
+        }
     }
 
     func showError() {
@@ -78,6 +88,10 @@ extension TweetsViewController: UITableViewDataSource {
             cell.configureImageForSentimentScore(sentimentScore)
         } else {
             presenter?.viewWillDisplayCellForTweet(tweet)
+        }
+
+        if indexPath.row == tweets.count-1 {
+            presenter?.fetchMoreTweets(forUsername: username!, startingFrom: tweets.last!.id!)
         }
 
         return cell

@@ -20,7 +20,10 @@ class TweetService: TweetServiceType {
                 url: createFetchTweetsFinalURL(username, tweetId),
                 headers: ["Authorization":"Bearer \(authorizationToken)"],
                 onSuccess: { data in
-                    let tweets = self.parseTweetsData(data: data)
+                    var tweets = self.parseTweetsData(data: data)
+                    if tweetId != nil {
+                        tweets.removeFirst()
+                    }
                     onSuccess(tweets)
                 }, onFailure: {
                     onFailure()

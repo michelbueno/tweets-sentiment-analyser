@@ -68,6 +68,14 @@ class TweetsPresenterTest: QuickSpec {
                 expect(viewMock.lastTweetCalledBySetUnknownScore).toNot(beNil())
                 expect(viewMock.lastTweetCalledBySetUnknownScore?.text).to(equal("a tweet"))
             }
+
+            it("calls interactor to fetch more tweets with correct param") {
+                sut.fetchMoreTweets(forUsername: "username", startingFrom: "123456")
+
+                expect(interactorMock.didCallFetchTweets).to(beTrue())
+                expect(interactorMock.lastUsernameCalled).to(equal("username"))
+                expect(interactorMock.lastStartingFromCalled).to(equal("123456"))
+            }
         }
     }
 }

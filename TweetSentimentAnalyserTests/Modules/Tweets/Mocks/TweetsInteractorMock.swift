@@ -20,6 +20,7 @@ class TweetsInteractorMock: TweetsInteractorType {
     func fetchTweets(forUsername username: String, startingFrom tweetId: String?) {
         didCallFetchTweets = true
         lastUsernameCalled = username
+        lastStartingFromCalled = tweetId
     }
 
     func getSentimentScore(forTweet tweet: Tweet) {

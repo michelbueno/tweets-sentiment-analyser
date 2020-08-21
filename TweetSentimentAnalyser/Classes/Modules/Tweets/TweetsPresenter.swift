@@ -14,6 +14,7 @@ protocol TweetsPresenterType {
     func viewWillDisplayCellForTweet(_: Tweet)
     func updateTweet(_: Tweet)
     func failedToGetSentimentScoreForTweet(_: Tweet)
+    func fetchMoreTweets(forUsername username: String, startingFrom tweetId: String)
 }
 
 class TweetsPresenter: TweetsPresenterType {
@@ -42,5 +43,9 @@ class TweetsPresenter: TweetsPresenterType {
 
     func failedToGetSentimentScoreForTweet(_ tweet: Tweet) {
         view?.setUnknownScoreForTweet(tweet)
+    }
+
+    func fetchMoreTweets(forUsername username: String, startingFrom tweetId: String) {
+        interactor?.fetchTweets(forUsername: username, startingFrom: tweetId)
     }
 }
