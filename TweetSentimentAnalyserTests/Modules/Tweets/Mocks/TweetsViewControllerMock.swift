@@ -32,7 +32,7 @@ class TweetsViewControllerMock: TweetsViewControllerType {
         lastTweetCalled = tweet
     }
 
-    func setUnknownScoreForTweet(_ tweet: Tweet) {
+    func setUnknownScoreImageForTweet(_ tweet: Tweet) {
         didCallSetUnknownScore = true
         lastTweetCalledBySetUnknownScore = tweet
     }

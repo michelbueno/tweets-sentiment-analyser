@@ -56,6 +56,7 @@ class TweetsTableViewCell: UITableViewCell {
 
     func configureUnknownSentimentScore() {
         self.activityIndicator.isHidden = true
+        self.imageView?.image = UIImage(named: "unknown")
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -72,6 +73,8 @@ class TweetsTableViewCell: UITableViewCell {
             self.imageView?.image = UIImage(named: "neutral")
         case .happy:
             self.imageView?.image = UIImage(named: "happy")
+        case .unknown:
+            self.imageView?.image = UIImage(named: "unknown")
         }
     }
 }

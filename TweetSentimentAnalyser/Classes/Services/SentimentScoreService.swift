@@ -9,6 +9,7 @@ enum SentimentScore {
     case happy
     case neutral
     case sad
+    case unknown
 }
 
 protocol SentimentScoreServiceType {
@@ -59,7 +60,7 @@ class SentimentScoreService: SentimentScoreServiceType {
             case 0.25 ... 1.0:
                 score = SentimentScore.happy
             default:
-                score = SentimentScore.neutral
+                score = SentimentScore.unknown
             }
         }
         return score

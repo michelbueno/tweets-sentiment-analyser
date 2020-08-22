@@ -69,6 +69,15 @@ class TweetsPresenterTest: QuickSpec {
                 expect(viewMock.lastTweetCalledBySetUnknownScore?.text).to(equal("a tweet"))
             }
 
+            it("sets .unknown to Tweet object when failedToGetSentimentScoreForTweet is called") {
+                sut.failedToGetSentimentScoreForTweet(dummyTweet)
+
+                expect(viewMock.didCallSetUnknownScore).to(beTrue())
+                expect(viewMock.lastTweetCalledBySetUnknownScore).toNot(beNil())
+                expect(viewMock.lastTweetCalledBySetUnknownScore?.text).to(equal("a tweet"))
+                expect(viewMock.lastTweetCalledBySetUnknownScore?.sentimentScore).to(equal(SentimentScore.unknown))
+            }
+
             it("calls interactor to fetch more tweets with correct param") {
                 sut.fetchMoreTweets(forUsername: "username", startingFrom: "123456")
 

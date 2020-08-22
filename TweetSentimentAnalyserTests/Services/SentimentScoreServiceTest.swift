@@ -111,6 +111,31 @@ class SentimentScoreServiceTest: QuickSpec {
 
                     expect(parsedScore).to(equal(SentimentScore.happy))
                 }
+
+                it("returns '.unknown' if score value is minor than -1.0") {
+                    remoteServiceMock.dataToReturn = "{\"documentSentiment\": {\"score\": -1.5}}".data(using: .utf8)
+                    var parsedScore: SentimentScore?
+                    sut.fetchSentimentScore(forText: "dummy text",
+                            onSuccess: { score in
+                                parsedScore = score
+                            }, onFailure: {}
+                    )
+
+                    expect(parsedScore).to(equal(SentimentScore.unknown))
+                }
+
+                it("returns '.unknown' if score value is greater than 1.0") {
+                    remoteServiceMock.dataToReturn = "{\"documentSentiment\": {\"score\": 2.5}}".data(using: .utf8)
+                    var parsedScore: SentimentScore?
+                    sut.fetchSentimentScore(forText: "dummy text",
+                            onSuccess: { score in
+                                parsedScore = score
+                            }, onFailure: {}
+                    )
+
+                    expect(parsedScore).to(equal(SentimentScore.unknown))
+                }
+
             }
         }
     }

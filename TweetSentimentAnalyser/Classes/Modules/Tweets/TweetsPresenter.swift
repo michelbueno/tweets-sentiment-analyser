@@ -42,7 +42,8 @@ class TweetsPresenter: TweetsPresenterType {
     }
 
     func failedToGetSentimentScoreForTweet(_ tweet: Tweet) {
-        view?.setUnknownScoreForTweet(tweet)
+        tweet.sentimentScore = .unknown
+        view?.setUnknownScoreImageForTweet(tweet)
     }
 
     func fetchMoreTweets(forUsername username: String, startingFrom tweetId: String) {
