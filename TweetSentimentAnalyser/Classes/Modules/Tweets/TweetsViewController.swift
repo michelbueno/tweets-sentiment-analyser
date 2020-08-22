@@ -19,6 +19,8 @@ class TweetsViewController: UIViewController, TweetsViewControllerType {
 
     unowned var tweetsView: TweetsView { self.view as! TweetsView }
     unowned var tableView: UITableView { tweetsView.tweetsTableView }
+    unowned var errorLabel: UILabel { tweetsView.errorLabel }
+    unowned var activityIndicator: UIActivityIndicatorView { tweetsView.activityIndicator }
 
     var username: String?
     var tweets: [Tweet] = []
@@ -30,7 +32,16 @@ class TweetsViewController: UIViewController, TweetsViewControllerType {
         self.navigationItem.title = "@\(username!)"
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+    }
+
     func loadTweets(_ tweetsList: [Tweet]) {
+        self.tableView.isHidden = false
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.isHidden = true
         if tweets.count == 0 {
             tweets.append(contentsOf: tweetsList)
             self.tableView.reloadData()
@@ -46,7 +57,10 @@ class TweetsViewController: UIViewController, TweetsViewControllerType {
     }
 
     func showError() {
-
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.isHidden = true
+        self.errorLabel.text = "Failed to fetch Tweets"
+        self.errorLabel.isHidden = false
     }
 
     func updateTweet(_ tweet: Tweet) {
