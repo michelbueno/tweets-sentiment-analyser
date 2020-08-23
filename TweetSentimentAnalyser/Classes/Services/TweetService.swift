@@ -22,7 +22,7 @@ class TweetService: TweetServiceType {
                 onSuccess: { data in
                     var tweets = self.parseTweetsData(data: data)
                     if tweetId != nil {
-                        tweets.removeFirst()
+                        tweets.removeFirst() //API returns last tweet
                     }
                     onSuccess(tweets)
                 }, onFailure: {
