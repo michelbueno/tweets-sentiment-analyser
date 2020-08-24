@@ -4,14 +4,14 @@ An iOS App that lists the tweets of a given username using Twitter API and shows
 
 ## Teck Stack
 - XCode 11.3
-- Cocoapods
+- [Cocoapods](https://github.com/AliSoftware/OHHTTPStubs)
 
 ## Dependencies
-- Quick
-- Nimble
-- Alamofire
-- SnapKit
-- OHHTTPStubs/Swift
+- [Quick](https://github.com/Quick/Quick)
+- [Nimble](https://github.com/Quick/Nimble)
+- [Alamofire](https://github.com/Alamofire/Alamofire)
+- [SnapKit](https://github.com/SnapKit/SnapKit)
+- [OHHTTPStubs/Swift](https://github.com/AliSoftware/OHHTTPStubs)
 
 ## Architecture
 This app was built based on a clean architecture model called **VIPER.** Basically, each of the letters in VIPER stansd for a component of the architecture: **View, Interactor, Presenter, Entity and Router:**
