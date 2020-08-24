@@ -75,6 +75,17 @@ class SentimentScoreServiceTest: QuickSpec {
                 expect(didCallOnFailure).to(beTrue())
             }
 
+            it("calls onFailure when cannot parse sentiment score") {
+                remoteServiceMock.dataToReturn = "{\"unexpectedObject\": {\"value\": 0}}".data(using: .utf8)
+                var didCallOnFailure = false
+
+                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in }, onFailure:{
+                    didCallOnFailure = true
+                })
+
+                expect(didCallOnFailure).to(beTrue())
+            }
+
             context("when parsing sentiment score value") {
                 it("returns 'sad' if score value is between -1.0 and -0.25") {
                     remoteServiceMock.dataToReturn = "{\"documentSentiment\": {\"score\": -0.5}}".data(using: .utf8)

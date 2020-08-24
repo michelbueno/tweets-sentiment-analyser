@@ -49,20 +49,22 @@ class SentimentScoreService: SentimentScoreServiceType {
 
     private func parseSentimentScore(data: Data?) -> SentimentScore? {
         var score: SentimentScore? = nil
-        if let responseObject = try! JSONSerialization.jsonObject(with: data!, options: []) as? Dictionary<String,AnyObject> {
-            let documentSentiment = responseObject["documentSentiment"]
-            let scoreValue = documentSentiment?["score"] as! Double
-            switch scoreValue {
-            case -1.0 ... -0.25:
-                score = SentimentScore.sad
-            case -0.25 ... 0.25:
-                score = SentimentScore.neutral
-            case 0.25 ... 1.0:
-                score = SentimentScore.happy
-            default:
-                score = SentimentScore.unknown
+        let responseObject = try! JSONSerialization.jsonObject(with: data!, options: []) as? Dictionary<String,AnyObject>
+        if let documentSentiment = responseObject?["documentSentiment"] {
+            if let scoreValue = documentSentiment["score"] as! Double? {
+                switch scoreValue {
+                case -1.0 ... -0.25:
+                    score = SentimentScore.sad
+                case -0.25...0.25:
+                    score = SentimentScore.neutral
+                case 0.25...1.0:
+                    score = SentimentScore.happy
+                default:
+                    score = SentimentScore.unknown
+                }
             }
         }
+
         return score
     }
 
