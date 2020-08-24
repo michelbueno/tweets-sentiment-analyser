@@ -36,7 +36,7 @@ class TweetServiceTest: QuickSpec {
             }
 
             it("sends authorization header with Bearer token") {
-                let expectedTokenValue = "Bearer AAAAAAAAAAAAAAAAAAAAACePGwEAAAAAKz0vO7llEv6OT2m6HHujVXuJQPc%3DP7KXorCKshg4c8GeYEd47ywLzilKDxiKMg9ZiT3PcrgMptK6ai"
+                let expectedTokenValue = "Bearer twitter_bearer_token_goes_here"
                 sut.fetchTweets(forUsername: "someUsername", startingFrom: nil, onSuccess: { _ in}, onFailure: {})
 
                 expect(remoteServiceMock.lastHeadersCalled).toNot(beNil())

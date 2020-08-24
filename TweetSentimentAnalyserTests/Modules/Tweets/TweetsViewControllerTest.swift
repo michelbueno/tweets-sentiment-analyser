@@ -152,7 +152,7 @@ class TweetsViewControllerTest: QuickSpec {
                 }
 
                 it("calls presenter to fetch more tweets when reaches last cell") {
-                    let cell = sut.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TweetsTableViewCell
+                    _ = sut.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TweetsTableViewCell
 
                     expect(presenterMock.didCallFetchMoreTweets).to(beTrue())
                 }

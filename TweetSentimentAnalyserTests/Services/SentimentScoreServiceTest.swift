@@ -29,7 +29,7 @@ class SentimentScoreServiceTest: QuickSpec {
             }
 
             it("uses correct url to fetch sentiment score") {
-                let expectedUrl = "https://language.googleapis.com/v1/documents:analyzeSentiment?key=AIzaSyBzk0lW8fgTxmcngQwAkAtHQli8QofFjSo"
+                let expectedUrl = "https://language.googleapis.com/v1/documents:analyzeSentiment?key=google_api_key_goes_here"
                 sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in } , onFailure: {})
 
                 expect(remoteServiceMock.lastUrlCalled?.absoluteString).to(equal(expectedUrl))
