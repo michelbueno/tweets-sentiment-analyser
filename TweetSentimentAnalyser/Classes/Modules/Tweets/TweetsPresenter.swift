@@ -43,7 +43,7 @@ class TweetsPresenter: TweetsPresenterType {
 
     func failedToGetSentimentScoreForTweet(_ tweet: Tweet) {
         tweet.sentimentScore = .unknown
-        view?.setUnknownScoreImageForTweet(tweet)
+        view?.updateTweet(tweet)
     }
 
     func fetchMoreTweets(forUsername username: String, startingFrom tweetId: String) {

@@ -8,10 +8,9 @@ import UIKit
 
 protocol HomeViewControllerType {
     var presenter: HomePresenterType? { get set }
-    func showErrorMessage()
 }
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, HomeViewControllerType {
     unowned var homeView: HomeView { self.view as! HomeView }
     unowned var analyseButton: UIButton { homeView.analyzeButton }
     unowned var usernameTextField: UITextField { homeView.usernameTextField }
@@ -38,11 +37,5 @@ extension HomeViewController: UITextFieldDelegate {
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-}
-
-extension HomeViewController: HomeViewControllerType {
-    func showErrorMessage() {
-        debugPrint("showErrorMessage called")
     }
 }

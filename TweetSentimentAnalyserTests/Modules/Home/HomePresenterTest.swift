@@ -13,15 +13,12 @@ class HomePresenterTest: QuickSpec {
     override func spec() {
         describe("HomePresenter") {
             var homeWireframeMock: HomeWireframeMock!
-            var homeViewControllerMock: HomeViewControllerMock!
             var sut: HomePresenter!
 
             beforeEach {
                 homeWireframeMock = HomeWireframeMock()
-                homeViewControllerMock = HomeViewControllerMock()
                 sut = HomePresenter()
                 sut.wireframe = homeWireframeMock
-                sut.view = homeViewControllerMock
             }
 
             context("when analyze button is pressed"){

@@ -11,7 +11,6 @@ protocol TweetsViewControllerType {
     func loadTweets(_ tweetsList: [Tweet])
     func showError()
     func updateTweet(_: Tweet)
-    func setUnknownScoreImageForTweet(_: Tweet)
 }
 
 class TweetsViewController: UIViewController, TweetsViewControllerType {
@@ -64,21 +63,14 @@ class TweetsViewController: UIViewController, TweetsViewControllerType {
     }
 
     func updateTweet(_ tweet: Tweet) {
-        let index = tweets.firstIndex { $0 === tweet }
+        let index = tweets.firstIndex { $0.id == tweet.id }
         tweets[index!] = tweet
         let indexPath = IndexPath(row: index!, section: 0)
 
-        if (tableView.indexPathsForVisibleRows?.contains(indexPath))! {
-            self.tableView.reloadRows(at: [indexPath], with: .fade)
-        }
-    }
-
-    func setUnknownScoreImageForTweet(_ tweet: Tweet) {
-        let index = tweets.firstIndex { $0 === tweet }
-        let indexPath = IndexPath(row: index!, section: 0)
-
-        if (tableView.indexPathsForVisibleRows?.contains(indexPath))! {
-            tableView.reloadRows(at: [indexPath], with: .automatic)
+        if let indexPaths = self.tableView.indexPathsForVisibleRows {
+            if indexPaths.contains(indexPath) {
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
         }
     }
 }

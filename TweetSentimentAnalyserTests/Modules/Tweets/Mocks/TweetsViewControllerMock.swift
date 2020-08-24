@@ -15,8 +15,6 @@ class TweetsViewControllerMock: TweetsViewControllerType {
     var didCallShowError = false
     var didCallUpdateTweet = false
     var lastTweetCalled: Tweet?
-    var didCallSetUnknownScore = false
-    var lastTweetCalledBySetUnknownScore: Tweet?
 
     func loadTweets(_ tweetsList: [Tweet]) {
         didCallLoadTweets = true
@@ -30,10 +28,5 @@ class TweetsViewControllerMock: TweetsViewControllerType {
     func updateTweet(_ tweet: Tweet) {
         didCallUpdateTweet = true
         lastTweetCalled = tweet
-    }
-
-    func setUnknownScoreImageForTweet(_ tweet: Tweet) {
-        didCallSetUnknownScore = true
-        lastTweetCalledBySetUnknownScore = tweet
     }
 }

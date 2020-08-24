@@ -18,13 +18,13 @@ class TweetsTableViewCell: UITableViewCell {
     var activityIndicator: UIActivityIndicatorView = {
         var activityIndicator = UIActivityIndicatorView(frame: .zero)
         activityIndicator.color = .lightGray
-        activityIndicator.startAnimating()
         return activityIndicator
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupUI()
+        activityIndicator.startAnimating()
     }
 
     func setupUI() {
@@ -54,17 +54,13 @@ class TweetsTableViewCell: UITableViewCell {
         }
     }
 
-    func configureUnknownSentimentScore() {
-        self.activityIndicator.isHidden = true
-        self.imageView?.image = UIImage(named: "unknown")
-    }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     func configureImageForSentimentScore(_ score: SentimentScore) {
         self.activityIndicator.isHidden = true
+        self.activityIndicator.stopAnimating()
 
         switch score {
         case .sad:
