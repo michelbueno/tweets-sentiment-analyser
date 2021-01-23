@@ -15,6 +15,7 @@
 		76388DE9B4E972CA32C9FACC335F8025 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB157CE6CCAE781EE784A61977BB91B2 /* HomeView.swift */; };
 		0B401043B897E6757F27DA3BB51E2E4E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B43FC7956FB851426D7E6D5ECA9C3 /* HomeViewController.swift */; };
 		117D629F1AFDBB34D121198D7B49A940 /* HomeViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153E6DA7856734C3C5773E24A5C86096 /* HomeViewControllerTest.swift */; };
+		219939F787649FF6493F0603C7D6B569 /* HomeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E51144F1FED6F7C81ECC9CC843C298 /* HomeViewTests.swift */; };
 		25C0653436E1EDBD87E4B700C7F1B561 /* HomeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E600478C99D70990022071AA1D9491 /* HomeWireframe.swift */; };
 		4B0FEDFC814789B3C02CB7E3494B1DD2 /* HomeWireframeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C08EF1CB89A66A78F80B9780FF9E0B /* HomeWireframeMock.swift */; };
 		6A888489923FA13D58DB8B24AA75F4E3 /* HomeWireframeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF222B5F20BD9EA911863E56B332DCD /* HomeWireframeTest.swift */; };
@@ -78,6 +79,7 @@
 		FB157CE6CCAE781EE784A61977BB91B2 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		505B43FC7956FB851426D7E6D5ECA9C3 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		153E6DA7856734C3C5773E24A5C86096 /* HomeViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTest.swift; sourceTree = "<group>"; };
+		E7E51144F1FED6F7C81ECC9CC843C298 /* HomeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTests.swift; sourceTree = "<group>"; };
 		60E600478C99D70990022071AA1D9491 /* HomeWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWireframe.swift; sourceTree = "<group>"; };
 		B4C08EF1CB89A66A78F80B9780FF9E0B /* HomeWireframeMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWireframeMock.swift; sourceTree = "<group>"; };
 		4EF222B5F20BD9EA911863E56B332DCD /* HomeWireframeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWireframeTest.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				1CAC4D060FD040E7027FD8B1670D5215 /* Mocks */,
 				85E8544DC9D6EE9AF8DC39161B1884C9 /* HomePresenterTest.swift */,
 				153E6DA7856734C3C5773E24A5C86096 /* HomeViewControllerTest.swift */,
+				E7E51144F1FED6F7C81ECC9CC843C298 /* HomeViewTests.swift */,
 				4EF222B5F20BD9EA911863E56B332DCD /* HomeWireframeTest.swift */,
 			);
 			path = Home;
@@ -668,6 +671,7 @@
 				5E094C3AE9D8F3E68BEBFD7A277420FF /* HomePresenterMock.swift in Sources */,
 				CEF071D22D4901D2B21862CBE21454A7 /* HomePresenterTest.swift in Sources */,
 				117D629F1AFDBB34D121198D7B49A940 /* HomeViewControllerTest.swift in Sources */,
+				219939F787649FF6493F0603C7D6B569 /* HomeViewTests.swift in Sources */,
 				4B0FEDFC814789B3C02CB7E3494B1DD2 /* HomeWireframeMock.swift in Sources */,
 				6A888489923FA13D58DB8B24AA75F4E3 /* HomeWireframeTest.swift in Sources */,
 				11B9102F8F8CCD7BC239D473FF7707AA /* RemoteServiceMock.swift in Sources */,
