@@ -1,4 +1,4 @@
-# Tweet Sentiment Analyser
+# Tweet Sentiment Analyser [![Build Status](https://app.bitrise.io/app/57ce24b4f8b238dc/status.svg?token=IU6Gz621DpEFLrqsPOnrqw)](https://app.bitrise.io/app/57ce24b4f8b238dc)
 
 An iOS App that lists the tweets of a given username using Twitter API and shows a sentiment score (sad, neutral, happy) for each tweet. It relies on **Google Natural Language API** to make this sentiment analysis possible.
 
