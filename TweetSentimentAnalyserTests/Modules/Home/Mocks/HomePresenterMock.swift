@@ -19,6 +19,4 @@ class HomePresenterMock: HomePresenterType {
         lasUsernameCalled = username
     }
 
-
-    
 }

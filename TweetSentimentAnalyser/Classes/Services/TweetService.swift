@@ -18,11 +18,11 @@ class TweetService: TweetServiceType {
     func fetchTweets(forUsername username: String, startingFrom tweetId: String?, onSuccess: @escaping ([Tweet]) -> Void, onFailure: @escaping () -> Void) {
         remoteService?.get(
                 url: createFetchTweetsFinalURL(username, tweetId),
-                headers: ["Authorization":"Bearer \(authorizationToken)"],
+                headers: ["Authorization": "Bearer \(authorizationToken)"],
                 onSuccess: { data in
                     var tweets = self.parseTweetsData(data: data)
                     if tweetId != nil {
-                        tweets.removeFirst() //API returns last tweet
+                        tweets.removeFirst() // API returns last tweet
                     }
                     onSuccess(tweets)
                 }, onFailure: {
@@ -33,7 +33,7 @@ class TweetService: TweetServiceType {
 
     private func createFetchTweetsFinalURL(_ username: String, _ tweetId: String?) -> URL {
         let fetchTweetsServiceUrl = Bundle.main.infoDictionary?["FETCH_TWEETS_SERVICE_URL"] as! String
-        
+
         var urlComponents = URLComponents(string: fetchTweetsServiceUrl)
         urlComponents?.queryItems = [
             URLQueryItem(name: "screen_name", value: username),
@@ -49,7 +49,7 @@ class TweetService: TweetServiceType {
 
     private func parseTweetsData(data: Data?) -> [Tweet] {
         var tweets: [Tweet] = []
-        if let tweetsArrayObject = try! JSONSerialization.jsonObject(with: data!, options: []) as? [Dictionary<String,AnyObject>] {
+        if let tweetsArrayObject = try! JSONSerialization.jsonObject(with: data!, options: []) as? [[String: AnyObject]] {
             for tweetObject in tweetsArrayObject {
                 let tweet = Tweet()
                 tweet.text = tweetObject["text"] as? String

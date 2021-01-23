@@ -23,31 +23,31 @@ class SentimentScoreServiceTest: QuickSpec {
             }
 
             it("uses RemoteService post to fetchSentimentScore") {
-                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in } , onFailure: {})
+                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in }, onFailure: {})
 
                 expect(remoteServiceMock.didCallPost).to(beTrue())
             }
 
             it("uses correct url to fetch sentiment score") {
                 let expectedUrl = "https://language.googleapis.com/v1/documents:analyzeSentiment?key=google_api_key_goes_here"
-                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in } , onFailure: {})
+                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in }, onFailure: {})
 
                 expect(remoteServiceMock.lastUrlCalled?.absoluteString).to(equal(expectedUrl))
             }
 
             it("sends correct payload on request to fetch sentiment score") {
                 let expectedPayload: [String: Any] = [
-                    "document" : [
-                        "type":"PLAIN_TEXT",
-                        "content":"dummy text"
+                    "document": [
+                        "type": "PLAIN_TEXT",
+                        "content": "dummy text"
                     ],
                     "encodingType": "UTF8"
                 ]
-                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in } , onFailure: {})
+                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in }, onFailure: {})
 
                 let param = remoteServiceMock.lastParametersCalled
                 expect(param).toNot(beNil())
-                //TODO: test request params
+                // TODO: test request params
             }
 
             it("calls onSuccess with a valid score when request succeeds") {
@@ -68,7 +68,7 @@ class SentimentScoreServiceTest: QuickSpec {
                 remoteServiceMock.returnError = true
                 var didCallOnFailure = false
 
-                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in }, onFailure:{
+                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in }, onFailure: {
                     didCallOnFailure = true
                 })
 
@@ -79,7 +79,7 @@ class SentimentScoreServiceTest: QuickSpec {
                 remoteServiceMock.dataToReturn = "{\"unexpectedObject\": {\"value\": 0}}".data(using: .utf8)
                 var didCallOnFailure = false
 
-                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in }, onFailure:{
+                sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in }, onFailure: {
                     didCallOnFailure = true
                 })
 

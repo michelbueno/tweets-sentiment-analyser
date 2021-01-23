@@ -9,7 +9,7 @@ import Nimble
 
 @testable import TweetSentimentAnalyser
 
-class TweetTableViewCellTest : QuickSpec {
+class TweetTableViewCellTest: QuickSpec {
     override func spec() {
         describe("TweetTableViewCell") {
             var sut: TweetsTableViewCell!

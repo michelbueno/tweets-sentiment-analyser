@@ -17,7 +17,7 @@ class HomeViewControllerTest: QuickSpec {
             sut.presenter = presenterMock
 
             it("calls presenter on analyse button pressed with correct param") {
-                sut.usernameTextField.text = "someUsername" 
+                sut.usernameTextField.text = "someUsername"
                 sut.analyseButton.sendActions(for: .touchUpInside)
 
                 expect(presenterMock.didCallOnAnaliseButtonPressed).to(beTrue())

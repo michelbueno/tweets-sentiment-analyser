@@ -40,7 +40,7 @@ class SentimentScoreService: SentimentScoreServiceType {
     private func createFinalURL() -> URL {
         let apiKey = Bundle.main.infoDictionary?["GOOGLE_API_KEY"] as! String
         let sentimentScoreServiceUrl = Bundle.main.infoDictionary?["SENTIMENT_SCORE_SERVICE_URL"] as! String
-        
+
         var urlComponents = URLComponents(string: sentimentScoreServiceUrl)
         urlComponents?.queryItems = [URLQueryItem(name: "key", value: apiKey)]
 
@@ -48,8 +48,8 @@ class SentimentScoreService: SentimentScoreServiceType {
     }
 
     private func parseSentimentScore(data: Data?) -> SentimentScore? {
-        var score: SentimentScore? = nil
-        let responseObject = try! JSONSerialization.jsonObject(with: data!, options: []) as? Dictionary<String,AnyObject>
+        var score: SentimentScore?
+        let responseObject = try! JSONSerialization.jsonObject(with: data!, options: []) as? [String: AnyObject]
         if let documentSentiment = responseObject?["documentSentiment"] {
             if let scoreValue = documentSentiment["score"] as! Double? {
                 switch scoreValue {
@@ -69,9 +69,9 @@ class SentimentScoreService: SentimentScoreServiceType {
     }
 
     private func createRequestBody(forText text: String) -> [String: Any] {
-        let requestBody: [String : Any] = [
-            "document" : [
-                "type":"PLAIN_TEXT",
+        let requestBody: [String: Any] = [
+            "document": [
+                "type": "PLAIN_TEXT",
                 "content": text
             ],
             "encodingType": "UTF8"

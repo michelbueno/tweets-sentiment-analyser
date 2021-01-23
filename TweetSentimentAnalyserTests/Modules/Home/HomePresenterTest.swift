@@ -21,7 +21,7 @@ class HomePresenterTest: QuickSpec {
                 sut.wireframe = homeWireframeMock
             }
 
-            context("when analyze button is pressed"){
+            context("when analyze button is pressed") {
                 it("uses wireframe to navigate to tweets list with username param") {
                     sut.onAnaliseButtonPressed(username: "someUsername")
 

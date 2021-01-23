@@ -29,7 +29,7 @@ class RemoteServiceMock: RemoteServiceType {
         }
     }
 
-    func post(url: URL, parameters: [String: Any], onSuccess: @escaping (Data?) -> (), onFailure: @escaping () -> ()) {
+    func post(url: URL, parameters: [String: Any], onSuccess: @escaping (Data?) -> Void, onFailure: @escaping () -> Void) {
         didCallPost = true
         lastUrlCalled = url
         lastParametersCalled = parameters

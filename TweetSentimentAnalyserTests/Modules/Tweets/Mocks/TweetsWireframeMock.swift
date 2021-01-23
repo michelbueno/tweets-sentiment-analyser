@@ -19,5 +19,4 @@ class TweetsWireframeMock: TweetsWireframeType {
         return TweetsViewController()
     }
 
-
 }

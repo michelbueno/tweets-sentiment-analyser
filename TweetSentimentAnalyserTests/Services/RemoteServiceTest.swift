@@ -22,13 +22,13 @@ class RemoteServiceTest: QuickSpec {
             context("GET") {
                 it("calls onFailure when request fails") {
                     stub(condition: isAbsoluteURLString("http://my-service.com/failure")) { _ in
-                        let genericError = NSError(domain:"Generic error", code:Int(1234), userInfo:nil)
-                        return HTTPStubsResponse(error:genericError)
+                        let genericError = NSError(domain: "Generic error", code: Int(1234), userInfo: nil)
+                        return HTTPStubsResponse(error: genericError)
                     }
 
                     var didCallOnFailure = false
                     let expectation = self.expectation(description: "async call")
-                    sut.get(url: URL(string: "http://my-service.com/failure")!, headers: [], onSuccess: { _ in }, onFailure: { 
+                    sut.get(url: URL(string: "http://my-service.com/failure")!, headers: [], onSuccess: { _ in }, onFailure: {
                         didCallOnFailure = true
                         expectation.fulfill()
                     })
@@ -41,7 +41,7 @@ class RemoteServiceTest: QuickSpec {
 
                 it("calls onSuccess when request succeeds") {
                     stub(condition: isAbsoluteURLString("http://my-service.com/success")) { _ in
-                        let obj = ["key1":"value1"]
+                        let obj = ["key1": "value1"]
                         return HTTPStubsResponse(jsonObject: obj, statusCode: 200, headers: nil)
                     }
                     var didCallOnSuccess = false
@@ -61,15 +61,15 @@ class RemoteServiceTest: QuickSpec {
             context("POST") {
                 it("calls onFailure when request fails") {
                     stub(condition: isAbsoluteURLString("http://my-service.com/failure")) { _ in
-                        let genericError = NSError(domain:"Generic error", code:Int(1234), userInfo:nil)
-                        return HTTPStubsResponse(error:genericError)
+                        let genericError = NSError(domain: "Generic error", code: Int(1234), userInfo: nil)
+                        return HTTPStubsResponse(error: genericError)
                     }
 
                     let body = ["someField": "someValue"]
                     var didCallOnFailure = false
                     let expectation = self.expectation(description: "async call")
 
-                    sut.post(url: URL(string:"http://my-service.com/failure")!, parameters: body, onSuccess: { _ in }, onFailure:  {
+                    sut.post(url: URL(string: "http://my-service.com/failure")!, parameters: body, onSuccess: { _ in }, onFailure: {
                         didCallOnFailure = true
                         expectation.fulfill()
                     })
@@ -82,16 +82,16 @@ class RemoteServiceTest: QuickSpec {
 
                 it("calls onSuccess when request succeeds") {
                     stub(condition: isAbsoluteURLString("http://my-service.com/success")) { _ in
-                        let obj = ["key1":"value1"]
+                        let obj = ["key1": "value1"]
                         return HTTPStubsResponse(jsonObject: obj, statusCode: 200, headers: nil)
                     }
                     var didCallOnSuccess = false
                     let expectation = self.expectation(description: "async call")
                     let body = ["someField": "someValue"]
-                    sut.post(url: URL(string:"http://my-service.com/success")!, parameters: body, onSuccess: { _ in
+                    sut.post(url: URL(string: "http://my-service.com/success")!, parameters: body, onSuccess: { _ in
                         didCallOnSuccess = true
                         expectation.fulfill()
-                    }, onFailure:  {})
+                    }, onFailure: {})
 
                     self.waitForExpectations(timeout: 1, handler: { error in
                         expect(error).to(beNil())

@@ -14,7 +14,7 @@ class HomeViewController: UIViewController, HomeViewControllerType {
     unowned var homeView: HomeView { self.view as! HomeView }
     unowned var analyseButton: UIButton { homeView.analyzeButton }
     unowned var usernameTextField: UITextField { homeView.usernameTextField }
-    
+
     var presenter: HomePresenterType?
 
     override func loadView() {
