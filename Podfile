@@ -12,6 +12,7 @@ target 'TweetSentimentAnalyser' do
     pod 'Quick'
     pod 'Nimble'
     pod 'OHHTTPStubs/Swift'
+    pod 'iOSSnapshotTestCase'
   end
 
   target 'TweetSentimentAnalyserUITests' do
