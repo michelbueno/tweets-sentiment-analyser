@@ -36,18 +36,14 @@ class SentimentScoreServiceTest: QuickSpec {
             }
 
             it("sends correct payload on request to fetch sentiment score") {
-                let expectedPayload: [String: Any] = [
-                    "document": [
-                        "type": "PLAIN_TEXT",
-                        "content": "dummy text"
-                    ],
-                    "encodingType": "UTF8"
-                ]
                 sut.fetchSentimentScore(forText: "dummy text", onSuccess: { _ in }, onFailure: {})
 
-                let param = remoteServiceMock.lastParametersCalled
-                expect(param).toNot(beNil())
-                // TODO: test request params
+                expect(remoteServiceMock.lastParametersCalled).toNot(beNil())
+                expect(remoteServiceMock.lastParametersCalled!["encodingType"] as? String).to(equal("UTF8"))
+                let document = remoteServiceMock.lastParametersCalled!["document"] as? [String: Any]
+                expect(document).toNot(beNil())
+                expect(document!["type"] as? String).to(equal("PLAIN_TEXT"))
+                expect(document!["content"] as? String).to(equal("dummy text"))
             }
 
             it("calls onSuccess with a valid score when request succeeds") {
