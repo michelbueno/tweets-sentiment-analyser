@@ -1,10 +1,10 @@
 # Tweet Sentiment Analyser
 
-An iOS App that lists the tweets of a given username using Twitter API and shows a sentiment score (sad, neutral, happy) for each tweet. It relies on **Google Natural Language API** to make this sentiment analysis posible.
+An iOS App that lists the tweets of a given username using Twitter API and shows a sentiment score (sad, neutral, happy) for each tweet. It relies on **Google Natural Language API** to make this sentiment analysis possible.
 
 ## Teck Stack
-- XCode 11.3
-- [Cocoapods](https://github.com/AliSoftware/OHHTTPStubs)
+- XCode 12.3
+- [Cocoapods] 1.10.0 (https://github.com/AliSoftware/OHHTTPStubs)
 
 ## Dependencies
 - [Quick](https://github.com/Quick/Quick)
