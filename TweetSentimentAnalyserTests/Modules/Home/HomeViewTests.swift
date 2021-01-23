@@ -15,7 +15,7 @@ import FBSnapshotTestCase
 class HomeViewTests: FBSnapshotTestCase {
     func testHasValidSnapShot() {
         let sut = HomeView(frame: UIApplication.shared.windows.first { $0.isKeyWindow }!.safeAreaLayoutGuide.layoutFrame)
-        
+
         FBSnapshotVerifyView(sut)
     }
 }

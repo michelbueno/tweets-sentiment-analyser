@@ -42,6 +42,7 @@
 		56542A3C0661F111EA0C78CAB62B6CA8 /* TweetsPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7281577C3FD9B9684C122981B5B665 /* TweetsPresenterTest.swift */; };
 		CE241AFF38B15A0E5A4D448B9E20E529 /* TweetsPressenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCA0971A2706A9456D7D7B6D76CC93D /* TweetsPressenterMock.swift */; };
 		7349FDF805C9760C859145E362758C94 /* TweetsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B63F67F97FE99FBFB2DB614F86E505 /* TweetsTableViewCell.swift */; };
+		38D77A8AA59B550A87601F132CED58F5 /* TweetsTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF435414A456B3E0B46B68906E7CA3C /* TweetsTableViewCellTests.swift */; };
 		272783B8702FDBC1601913E9A79B2A12 /* TweetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77C26F0D48205D6D7CC18D97AD159E3 /* TweetsView.swift */; };
 		922DF00D3464B523AF5C4BD6F98E3F16 /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE3AC280F7E023648D7B94C694EBE1 /* TweetsViewController.swift */; };
 		4EDDB74E591AB60CAB819E9A8C1EC9AB /* TweetsViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3419FB28E86FFCC02F7B93F8C0408B /* TweetsViewControllerMock.swift */; };
@@ -119,6 +120,7 @@
 		6B7281577C3FD9B9684C122981B5B665 /* TweetsPresenterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsPresenterTest.swift; sourceTree = "<group>"; };
 		FCCA0971A2706A9456D7D7B6D76CC93D /* TweetsPressenterMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsPressenterMock.swift; sourceTree = "<group>"; };
 		A7B63F67F97FE99FBFB2DB614F86E505 /* TweetsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsTableViewCell.swift; sourceTree = "<group>"; };
+		DDF435414A456B3E0B46B68906E7CA3C /* TweetsTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetsTableViewCellTests.swift; sourceTree = "<group>"; };
 		B77C26F0D48205D6D7CC18D97AD159E3 /* TweetsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsView.swift; sourceTree = "<group>"; };
 		E8AE3AC280F7E023648D7B94C694EBE1 /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
 		BC3419FB28E86FFCC02F7B93F8C0408B /* TweetsViewControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewControllerMock.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				AB308B72A926BEA06C64FC22674FCC3E /* TweetTableViewCellTest.swift */,
 				746E9F480DB2A52BF0195757CF2D7F42 /* TweetsInteractorTest.swift */,
 				6B7281577C3FD9B9684C122981B5B665 /* TweetsPresenterTest.swift */,
+				DDF435414A456B3E0B46B68906E7CA3C /* TweetsTableViewCellTests.swift */,
 				F5738A057910A972B673975377738505 /* TweetsViewControllerTest.swift */,
 				C0B08A82B6C928A332C5BACE66FA25BA /* TweetsWireframeTest.swift */,
 			);
@@ -684,6 +687,7 @@
 				4CF72C61CCA11AF12145A0FDCA15BB64 /* TweetsInteractorTest.swift in Sources */,
 				56542A3C0661F111EA0C78CAB62B6CA8 /* TweetsPresenterTest.swift in Sources */,
 				CE241AFF38B15A0E5A4D448B9E20E529 /* TweetsPressenterMock.swift in Sources */,
+				38D77A8AA59B550A87601F132CED58F5 /* TweetsTableViewCellTests.swift in Sources */,
 				4EDDB74E591AB60CAB819E9A8C1EC9AB /* TweetsViewControllerMock.swift in Sources */,
 				A37B650132D1F107570D42F365AC6651 /* TweetsViewControllerTest.swift in Sources */,
 				2A211E937B797AC18565C4509984BE5E /* TweetsWireframeMock.swift in Sources */,
