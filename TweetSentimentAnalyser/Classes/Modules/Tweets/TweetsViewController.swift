@@ -41,7 +41,7 @@ class TweetsViewController: UIViewController, TweetsViewControllerType {
         self.tableView.isHidden = false
         self.activityIndicator.stopAnimating()
         self.activityIndicator.isHidden = true
-        if tweets.count == 0 {
+        if tweets.isEmpty {
             tweets.append(contentsOf: tweetsList)
             self.tableView.reloadData()
         } else {
@@ -92,7 +92,7 @@ extension TweetsViewController: UITableViewDataSource {
         if let sentimentScore = tweet.sentimentScore {
             cell.configureImageForSentimentScore(sentimentScore)
         } else {
-            presenter?.viewWillDisplayCellForTweet(tweet)
+            presenter?.getSentimentScoreForTweet(tweet)
         }
 
         if indexPath.row == tweets.count-1 {

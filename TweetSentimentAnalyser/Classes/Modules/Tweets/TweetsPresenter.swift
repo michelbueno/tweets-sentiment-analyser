@@ -11,7 +11,7 @@ protocol TweetsPresenterType {
     func loadView(with username: String)
     func loadTweets(_ tweetsList: [Tweet])
     func failedToFetchTweets()
-    func viewWillDisplayCellForTweet(_: Tweet)
+    func getSentimentScoreForTweet(_: Tweet)
     func updateTweet(_: Tweet)
     func failedToGetSentimentScoreForTweet(_: Tweet)
     func fetchMoreTweets(forUsername username: String, startingFrom tweetId: String)
@@ -33,7 +33,7 @@ class TweetsPresenter: TweetsPresenterType {
         interactor?.fetchTweets(forUsername: username, startingFrom: nil)
     }
 
-    func viewWillDisplayCellForTweet(_ tweet: Tweet) {
+    func getSentimentScoreForTweet(_ tweet: Tweet) {
         interactor?.getSentimentScore(forTweet: tweet)
     }
 

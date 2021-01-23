@@ -40,7 +40,7 @@ class TweetsPresenterMock: TweetsPresenterType {
         didCallFailedToFetchTweets = true
     }
 
-    func viewWillDisplayCellForTweet(_ tweet: Tweet) {
+    func getSentimentScoreForTweet(_ tweet: Tweet) {
         didCallViewWillDisplayCellForTweet = true
         lastTweetCalledByWillDisplayCell = tweet
     }

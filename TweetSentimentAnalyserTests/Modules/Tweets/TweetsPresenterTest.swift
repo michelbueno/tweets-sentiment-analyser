@@ -48,7 +48,7 @@ class TweetsPresenterTest: QuickSpec {
             }
 
             it("calls interactor to get sentiment score on viewWillDisplayCellForTweet") {
-                sut.viewWillDisplayCellForTweet(dummyTweet)
+                sut.getSentimentScoreForTweet(dummyTweet)
 
                 expect(interactorMock.didCallGetSentimentScoreForTweet).to(beTrue())
             }
