@@ -4,7 +4,7 @@ An iOS App that lists the tweets of a given username using Twitter API and shows
 
 ## Teck Stack
 - XCode 12.3
-- [Cocoapods](https://github.com/AliSoftware/OHHTTPStubs) 1.10.0 
+- [Cocoapods](https://github.com/CocoaPods/CocoaPods) 1.10.0 
 
 ## Dependencies
 - [Quick](https://github.com/Quick/Quick)
